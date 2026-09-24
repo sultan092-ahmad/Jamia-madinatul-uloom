@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Islamic Calendar | Jamia Madinatul Uloom</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calendar.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="wrap">
+
+      <a href="index.html" class="brand">
+        <img src="images/logo.jamia.jpeg" alt="Jamia Logo">
+        <span>Jamia Madinatul Uloom</span>
+      </a>
+
+      <nav>
+        <ul class="links">
+
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="index.html#daily-life">Daily Life</a></li>
+          <li><a href="index.html#admissions">Admissions</a></li>
+          <li><a href="index.html#visit">Visit</a></li>
+
+          <li class="nav-dropdown">
+            <button class="dropdown-btn">
+              More <span class="arrow">⌄</span>
+            </button>
+
+            <div class="dropdown-menu">
+              <a href="leadership.html">Leadership</a>
+              <a href="calendar.html">Islamic Calendar</a>
+              <a href="facilities.html">Facilities</a>
+              <a href="facilities.html#gallery">Gallery</a>
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- CALENDAR HERO -->
+  <section class="calendar-hero">
+
+    <div class="wrap">
+
+      <p class="calendar-arabic">
+        التقويم الهجري
+      </p>
+
+      <h1>Islamic Calendar</h1>
+
+      <p>
+        Hijri calendar for the Muslim community of
+        Jamia Madinatul Uloom.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- CALENDAR -->
+  <main class="calendar-section">
+
+    <div class="wrap">
+
+      <div class="calendar-card">
+
+        <!-- TOP -->
+        <div class="calendar-top">
+
+          <button id="prevMonth" class="calendar-btn">
+            ←
+          </button>
+
+          <div class="calendar-title">
+
+            <h2 id="hijriMonth">
+              Loading...
+            </h2>
+
+            <p id="gregorianMonth">
+              Loading...
+            </p>
+
+          </div>
+
+          <button id="nextMonth" class="calendar-btn">
+            →
+          </button>
+
+        </div>
+
+
+        <!-- TODAY -->
+        <div class="today-box">
+
+          <span>Today's Date</span>
+
+          <strong id="todayHijri">
+            Loading...
+          </strong>
+
+          <small id="todayGregorian">
+            Loading...
+          </small>
+
+        </div>
+
+
+        <!-- DAYS -->
+        <div class="calendar-weekdays">
+
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+
+        </div>
+
+
+        <!-- DATES -->
+        <div id="calendarDays" class="calendar-days"></div>
+
+      </div>
+
+
+      <!-- IMPORTANT ISLAMIC DAYS -->
+      <section class="islamic-events">
+
+        <h2>Important Islamic Days</h2>
+
+        <div class="event-grid">
+
+          <div class="event-card">
+            <span>01 Muharram</span>
+            <h3>Islamic New Year</h3>
+          </div>
+
+          <div class="event-card">
+            <span>10 Muharram</span>
+            <h3>Day of Ashura</h3>
+          </div>
+
+          <div class="event-card">
+            <span>01 Ramadan</span>
+            <h3>Beginning of Ramadan</h3>
+          </div>
+
+          <div class="event-card">
+            <span>27 Ramadan</span>
+            <h3>Laylat al-Qadr</h3>
+          </div>
+
+          <div class="event-card">
+            <span>01 Shawwal</span>
+            <h3>Eid al-Fitr</h3>
+          </div>
+
+          <div class="event-card">
+            <span>10 Dhul Hijjah</span>
+            <h3>Eid al-Adha</h3>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="foot">
+
+    <div class="wrap">
+
+      <div>
+        © Jamia Madinatul Uloom
+      </div>
+
+      <div>
+        Phakuli • Muzaffarpur • Bihar
+      </div>
+
+    </div>
+
+  </footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ==============================
+    // HTML ELEMENTS
+    // ==============================
+
+    const title = document.getElementById("hijriMonth");
+    const subtitle = document.getElementById("gregorianMonth");
+
+    const todayHijri = document.getElementById("todayHijri");
+    const todayGregorian = document.getElementById("todayGregorian");
+
+    const grid = document.getElementById("calendarDays");
+
+    const prevBtn = document.getElementById("prevMonth");
+    const nextBtn = document.getElementById("nextMonth");
+
+
+    // ==============================
+    // CHECK ELEMENTS
+    // ==============================
+
+    if (!title || !subtitle || !todayHijri ||
+        !todayGregorian || !grid) {
+
+        console.error("Calendar HTML elements not found!");
+        return;
+    }
+
+
+    // ==============================
+    // HIJRI FORMATTER
+    // ==============================
+
+    const hijriFormatter = new Intl.DateTimeFormat(
+        "en-u-ca-islamic-umalqura",
+        {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+
+    // ==============================
+    // GET HIJRI DATE
+    // ==============================
+
+    function getHijri(date) {
+
+        const parts = hijriFormatter.formatToParts(date);
+
+        let day = "";
+        let month = "";
+        let year = "";
+
+        parts.forEach(function (part) {
+
+            if (part.type === "day") {
+                day = part.value;
+            }
+
+            if (part.type === "month") {
+                month = part.value;
+            }
+
+            if (part.type === "year") {
+                year = part.value;
+            }
+
+        });
+
+        return {
+            day: Number(day),
+            month: month,
+            year: Number(year)
+        };
+    }
+
+
+    // ==============================
+    // TODAY
+    // ==============================
+
+    function showToday() {
+
+        const today = new Date();
+
+        const hijri = getHijri(today);
+
+
+        const gregorianFormatter = new Intl.DateTimeFormat(
+            "en-IN",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+
+        todayHijri.innerText =
+            hijri.day +
+            " " +
+            hijri.month +
+            " " +
+            hijri.year +
+            " AH";
+
+
+        todayGregorian.innerText =
+            gregorianFormatter.format(today);
+
+    }
+
+
+    // ==============================
+    // CURRENT DATE
+    // ==============================
+
+    let currentDate = new Date();
+
+
+    // ==============================
+    // FIND FIRST DAY OF HIJRI MONTH
+    // ==============================
+
+    function findFirstDay(year, month) {
+
+        const date = new Date();
+
+        date.setDate(date.getDate() - 400);
+
+
+        for (let i = 0; i < 900; i++) {
+
+            const hijri = getHijri(date);
+
+
+            if (
+                hijri.year === year &&
+                hijri.month === month
+            ) {
+
+                return new Date(date);
+
+            }
+
+
+            date.setDate(
+                date.getDate() + 1
+            );
+
+        }
+
+
+        return null;
+    }
+
+
+    // ==============================
+    // RENDER CALENDAR
+    // ==============================
+
+    function renderCalendar() {
+
+        grid.innerHTML = "";
+
+
+        const currentHijri =
+            getHijri(currentDate);
+
+
+        const year =
+            currentHijri.year;
+
+        const month =
+            currentHijri.month;
+
+
+        // Hijri month title
+        title.innerText =
+            month + " " + year + " AH";
+
+
+        // Gregorian month
+        subtitle.innerText =
+            new Intl.DateTimeFormat(
+                "en-IN",
+                {
+                    month: "long",
+                    year: "numeric"
+                }
+            ).format(currentDate);
+
+
+        // Find first day
+        const firstDay =
+            findFirstDay(year, month);
+
+
+        if (!firstDay) {
+
+            title.innerText =
+                "Islamic Calendar";
+
+            subtitle.innerText =
+                "Calendar could not be loaded.";
+
+            return;
+        }
+
+
+        // ==============================
+        // EMPTY DAYS
+        // ==============================
+
+        const startingDay =
+            firstDay.getDay();
+
+
+        for (
+            let i = 0;
+            i < startingDay;
+            i++
+        ) {
+
+            const empty =
+                document.createElement("div");
+
+            empty.className =
+                "calendar-day empty";
+
+            grid.appendChild(empty);
+
+        }
+
+
+        // ==============================
+        // CALENDAR DAYS
+        // ==============================
+
+        let date =
+            new Date(firstDay);
+
+
+        for (let i = 0; i < 31; i++) {
+
+            const hijri =
+                getHijri(date);
+
+
+            // Stop when month changes
+            if (
+                hijri.year !== year ||
+                hijri.month !== month
+            ) {
+                break;
+            }
+
+
+            const box =
+                document.createElement("div");
+
+
+            box.className =
+                "calendar-day";
+
+
+            // ==============================
+            // TODAY
+            // ==============================
+
+            const now =
+                new Date();
+
+
+            if (
+                date.getFullYear() === now.getFullYear() &&
+                date.getMonth() === now.getMonth() &&
+                date.getDate() === now.getDate()
+            ) {
+
+                box.classList.add("today");
+
+            }
+
+
+            // ==============================
+            // DATE HTML
+            // ==============================
+
+            box.innerHTML = `
+
+                <span class="hijri-day">
+                    ${hijri.day}
+                </span>
+
+                <span class="gregorian-day">
+                    ${date.getDate()}
+                </span>
+
+            `;
+
+
+            grid.appendChild(box);
+
+
+            // Next Gregorian day
+            date.setDate(
+                date.getDate() + 1
+            );
+
+        }
+
+    }
+
+
+    // ==============================
+    // PREVIOUS MONTH
+    // ==============================
+
+    prevBtn.addEventListener(
+        "click",
+        function () {
+
+            currentDate.setDate(
+                currentDate.getDate() - 30
+            );
+
+            renderCalendar();
+
+        }
+    );
+
+
+    // ==============================
+    // NEXT MONTH
+    // ==============================
+
+    nextBtn.addEventListener(
+        "click",
+        function () {
+
+            currentDate.setDate(
+                currentDate.getDate() + 30
+            );
+
+            renderCalendar();
+
+        }
+    );
+
+
+    // ==============================
+    // START CALENDAR
+    // ==============================
+
+    showToday();
+
+    renderCalendar();
+
+});
+</script>
+
+</body>
+</html>
