@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Notices | Jamia Madinatul Uloom</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="nav">
+    <div class="wrap">
+
+        <a class="brand" href="index.html">
+
+            <img
+                src="images/logo.jamia.jpeg"
+                alt="Jamia Madinatul Uloom Logo"
+                class="site-logo"
+            >
+
+            <span>Jamia Madinatul Uloom</span>
+
+        </a>
+
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-expanded="false"
+            aria-controls="links"
+        >
+            Menu
+        </button>
+
+
+        <ul class="links" id="links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="index.html#about">About</a>
+            </li>
+
+            <li>
+                <a href="index.html#programs">Programs</a>
+            </li>
+
+            <li>
+                <a href="index.html#daily">Daily Life</a>
+            </li>
+
+            <li>
+                <a href="index.html#admissions">Admissions</a>
+            </li>
+
+            <li>
+                <a href="index.html#visit">Visit</a>
+            </li>
+
+            <li class="nav-dropdown">
+
+                <button
+                    class="dropdown-btn"
+                    type="button"
+                >
+                    More <span>▾</span>
+                </button>
+
+
+                <div class="dropdown-menu">
+
+                    <a href="leadership.html">
+                        Sarbarah &amp; Maulanas
+                    </a>
+
+                    <a href="notices.html">
+                        📢 Notices
+                    </a>
+
+                    <a href="calendar.html">
+                        Islamic Calendar
+                    </a>
+
+                    <a href="facilities.html">
+                        Facilities
+                    </a>
+
+                    <a href="facilities.html#gallery">
+                        Gallery
+                    </a>
+
+                    <a href="login.html">
+                        🔐 Admin Login
+                    </a>
+
+                </div>
+
+            </li>
+
+        </ul>
+
+    </div>
+</header>
+
+
+<!-- ================= NOTICE PAGE ================= -->
+
+<main>
+
+<section class="notice-page">
+
+    <div class="wrap">
+
+        <div class="notice-page-heading">
+            <h1>
+                📢 Notices & Announcements
+            </h1>
+
+            <p>
+                Stay updated with the latest announcements ,
+                admissions , examinations and important information
+                from the Jamia.
+            </p>
+
+        </div>
+
+
+        <div
+            id="noticePageLoading"
+            class="notice-message"
+        >
+            Loading notices...
+        </div>
+
+
+        <div
+            id="noticePageEmpty"
+            class="notice-message"
+            style="display:none;"
+        >
+            📢 Not Available Any Notices.
+        </div>
+
+
+        <div
+            id="noticePageError"
+            class="notice-message"
+            style="display:none;"
+        >
+            ❌ Notices not loading.
+        </div>
+
+
+        <div
+            id="noticePageContainer"
+            class="notice-page-grid"
+        ></div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="foot">
+
+    <div class="wrap">
+
+        <span>
+            &copy; 2026 Jamia Madinatul Uloom
+        </span>
+
+        <span
+            class="ar"
+            lang="ar"
+            dir="rtl"
+        >
+            رَبِّ زِدْنِي عِلْمًا
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+
+<script>
+
+async function loadPublicNotices() {
+
+    const loading =
+        document.getElementById("noticePageLoading");
+
+    const empty =
+        document.getElementById("noticePageEmpty");
+
+    const errorBox =
+        document.getElementById("noticePageError");
+
+    const container =
+        document.getElementById("noticePageContainer");
+
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/notices"
+        );
+
+
+        const data = await response.json();
+
+
+        loading.style.display = "none";
+
+
+        if (!data.success) {
+
+            errorBox.style.display = "block";
+
+            return;
+
+        }
+
+
+        if (
+            !data.notices ||
+            data.notices.length === 0
+        ) {
+
+            empty.style.display = "block";
+
+            return;
+
+        }
+
+
+        container.innerHTML = "";
+
+
+        data.notices.forEach(function(notice) {
+
+            const card =
+                document.createElement("article");
+
+            card.className = "notice-page-card";
+
+
+            card.innerHTML = `
+
+                <div class="notice-card-icon">
+                    📢
+                </div>
+
+                <div class="notice-card-content">
+
+                    <h2>
+                        ${notice.title}
+                    </h2>
+
+                    ${
+                        notice.date
+                        ?
+                        `
+                        <div class="notice-card-date">
+                            📅 ${notice.date}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                    <p>
+                        ${notice.description}
+                    </p>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Notice Error:",
+            error
+        );
+
+        loading.style.display = "none";
+
+        errorBox.style.display = "block";
+
+    }
+
+}
+
+
+loadPublicNotices();
+
+</script>
+
+</body>
+
+</html>

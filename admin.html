@@ -1,0 +1,3732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel | Jamia Madinatul Uloom</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            color: #333;
+        }
+
+
+        /* =========================
+           ADMIN HEADER
+        ========================= */
+
+        .admin-header {
+
+            background: #073b36;
+            color: white;
+
+            padding: 22px 5%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-header h1 {
+
+            margin: 0;
+
+            font-size: 26px;
+        }
+
+        .logout-btn {
+
+            background: #c89b3c;
+
+            color: white;
+
+            border: none;
+
+            padding: 11px 22px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 15px;
+        }
+
+        .logout-btn:hover {
+
+            background: #a77d29;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .admin-container {
+
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: 40px auto;
+        }
+
+
+        /* =========================
+           WELCOME BOX
+        ========================= */
+
+        .welcome-box {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 14px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .welcome-box h2 {
+
+            margin-top: 0;
+
+            color: #073b36;
+        }
+
+
+        /* =========================
+           ADMIN GRID
+        ========================= */
+
+        .admin-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 40px;
+        }
+
+        .admin-card {
+
+            background: white;
+
+            padding: 30px 20px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+        .admin-card:hover {
+
+            transform: translateY(-5px);
+        }
+
+        .admin-card .icon {
+
+            font-size: 40px;
+
+            margin-bottom: 15px;
+        }
+
+        .admin-card h3 {
+
+            color: #073b36;
+
+            margin-bottom: 10px;
+        }
+
+        .admin-card p {
+
+            color: #666;
+
+            margin: 0;
+        }
+
+
+        /* =========================
+           TEACHERS MANAGEMENT
+        ========================= */
+
+        .admin-section {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 16px;
+
+            margin-top: 35px;
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .admin-section > h2 {
+
+            color: #073b36;
+
+            font-size: 32px;
+
+            margin-top: 0;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .admin-btn {
+
+            background: #073b36;
+
+            color: white;
+
+            border: none;
+
+            padding: 13px 24px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            margin-bottom: 25px;
+        }
+
+        .admin-btn:hover {
+
+            background: #0b514a;
+        }
+
+
+        /* =========================
+           ADD TEACHER BOX
+        ========================= */
+
+        .add-teacher-box {
+
+            background: #f7f9f8;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            margin-bottom: 35px;
+        }
+
+        .add-teacher-box h2 {
+
+            color: #073b36;
+
+            margin-top: 0;
+
+            margin-bottom: 20px;
+        }
+
+        .add-teacher-box input,
+        .add-teacher-box textarea {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-bottom: 15px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .add-teacher-box textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+        }
+
+        .add-teacher-box input:focus,
+        .add-teacher-box textarea:focus {
+
+            outline: none;
+
+            border-color: #073b36;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #teacherMessage {
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           TEACHER LIST
+        ========================= */
+
+        #teachersList {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .teacher-admin-card {
+
+            background: white;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.06);
+        }
+
+        .teacher-admin-card h3 {
+
+            color: #073b36;
+
+            font-size: 24px;
+
+            margin-top: 0;
+
+            margin-bottom: 20px;
+        }
+
+        .teacher-admin-card p {
+
+            color: #555;
+
+            line-height: 1.6;
+
+            margin: 10px 0;
+        }
+
+        .teacher-admin-card strong {
+
+            color: #333;
+        }
+
+        .delete-btn {
+
+            background: #b42318;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 18px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+        }
+
+        .delete-btn:hover {
+
+            background: #8f1c13;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .admin-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            #teachersList {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .admin-header {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                text-align: center;
+            }
+
+            .admin-header h1 {
+
+                font-size: 22px;
+            }
+
+            .admin-container {
+
+                width: 94%;
+
+                margin: 25px auto;
+            }
+
+            .admin-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .admin-section {
+
+                padding: 20px;
+            }
+
+            .admin-section > h2 {
+
+                font-size: 26px;
+            }
+
+            .add-teacher-box {
+
+                padding: 18px;
+            }
+        }
+/* =========================
+   PROGRAMS MANAGEMENT
+========================= */
+
+#programsList {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+
+.program-admin-card {
+
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.06);
+}
+
+
+.program-admin-card h3 {
+
+    color: #073b36;
+
+    font-size: 24px;
+
+    margin-top: 0;
+
+    margin-bottom: 15px;
+}
+
+
+.program-admin-card p {
+
+    color: #555;
+
+    line-height: 1.6;
+
+    margin: 10px 0;
+}
+
+
+.program-admin-card img {
+
+    width: 100%;
+
+    max-height: 200px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+@media (max-width: 900px) {
+
+    #programsList {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* =========================
+   GALLERY ADMIN
+========================= */
+
+#galleryList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gallery-admin-card {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+.gallery-admin-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.gallery-admin-card h3 {
+    color: #073b36;
+    margin: 5px 0 10px;
+}
+
+.gallery-admin-card p {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.gallery-delete-btn {
+    background: #c62828;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.gallery-delete-btn:hover {
+    background: #a51f1f;
+}
+
+@media (max-width: 900px) {
+
+    #galleryList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    #galleryList {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-admin-card img {
+        height: 220px;
+    }
+
+}
+
+/* =========================
+   ADMISSIONS MANAGEMENT
+========================= */
+
+#admissionsList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.admission-card {
+    background: #f7f9f8;
+    border: 1px solid #e1e5e3;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.admission-card h3 {
+    color: #073b36;
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 23px;
+}
+
+.admission-detail {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.admission-detail strong {
+    color: #073b36;
+}
+
+.admission-status {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    margin-top: 15px;
+    font-size: 15px;
+    background: white;
+}
+
+.admission-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.admission-update-btn {
+    background: #073b36;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.admission-delete-btn {
+    background: #c62828;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.admission-update-btn:hover {
+    background: #0b514a;
+}
+
+.admission-delete-btn:hover {
+    background: #a51f1f;
+}
+
+.admission-message {
+    padding: 15px;
+    background: #f7f9f8;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+@media (max-width: 800px) {
+
+    #admissionsList {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .admission-card {
+        padding: 18px;
+    }
+
+    .admission-card h3 {
+        font-size: 20px;
+    }
+
+    .admission-actions {
+        flex-direction: column;
+    }
+
+    .admission-update-btn,
+    .admission-delete-btn {
+        width: 100%;
+    }
+
+}
+
+/* =========================
+   ADMISSION SEARCH & FILTER
+========================= */
+
+.admission-tools {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 15px;
+    align-items: center;
+    margin: 10px 0 25px;
+}
+
+.admission-total {
+    background: #f7f9f8;
+    border: 1px solid #e1e5e3;
+    padding: 13px 16px;
+    border-radius: 8px;
+    color: #073b36;
+}
+
+#totalAdmissions {
+    font-size: 20px;
+    margin-left: 6px;
+}
+
+#admissionSearch,
+#admissionFilter {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background: white;
+}
+
+#admissionSearch:focus,
+#admissionFilter:focus {
+    outline: none;
+    border-color: #073b36;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .admission-tools {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================
+   ADMISSION CONTACT BUTTONS
+========================= */
+
+.admission-call-btn,
+.admission-whatsapp-btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.admission-call-btn {
+    background: #073b36;
+    color: white;
+}
+
+.admission-call-btn:hover {
+    background: #0a5149;
+}
+
+.admission-whatsapp-btn {
+    background: #25D366;
+    color: white;
+}
+
+.admission-whatsapp-btn:hover {
+    background: #1ebe5d;
+}
+
+.admission-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+
+    .admission-actions {
+        flex-direction: column;
+    }
+
+    .admission-call-btn,
+    .admission-whatsapp-btn,
+    .admission-update-btn,
+    .admission-delete-btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}
+
+/* =========================
+   DASHBOARD STATISTICS
+========================= */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #eef6f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.stat-card h3 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    color: #073b36;
+}
+
+.stat-card p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+}
+.admin-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+}
+
+.admin-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+    </style>
+
+</head>
+
+
+<body class="admin-page">
+
+
+    <!-- =========================
+         ADMIN HEADER
+    ========================= -->
+
+    <header class="admin-header">
+        <img
+        src="images/logo.jamia.jpeg"
+        alt="Jamia Madinatul Uloom Logo"
+        class="admin-logo"
+    >
+
+        <h1>
+            Jamia Admin Panel
+        </h1>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="admin-container">
+
+<!-- =========================
+     DASHBOARD STATISTICS
+========================= -->
+
+<section class="dashboard-stats">
+
+    <div class="stat-card">
+        <div class="stat-icon">👨‍🏫</div>
+        <div>
+            <h3 id="statTeachers">0</h3>
+            <p>Total Teachers</p>
+        </div>
+    </div>
+
+
+    <div class="stat-card">
+        <div class="stat-icon">📚</div>
+        <div>
+            <h3 id="statPrograms">0</h3>
+            <p>Total Programs</p>
+        </div>
+    </div>
+
+
+    <div class="stat-card">
+        <div class="stat-icon">🖼️</div>
+        <div>
+            <h3 id="statGallery">0</h3>
+            <p>Total Gallery</p>
+        </div>
+    </div>
+
+
+    <div class="stat-card">
+        <div class="stat-icon">📝</div>
+        <div>
+            <h3 id="statAdmissions">0</h3>
+            <p>Total Admissions</p>
+        </div>
+    </div>
+
+</section>
+        <!-- =========================
+             WELCOME
+        ========================= -->
+
+        <div class="welcome-box">
+
+            <h2>
+                Welcome, Admin 👋
+            </h2>
+
+            <p>
+                Manage Jamia Madinatul Uloom website
+                content from this admin panel.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             ADMIN CARDS
+        ========================= -->
+
+        <div class="admin-grid">
+
+
+            <!-- Teachers -->
+
+            <div class="admin-card">
+
+                <div class="icon">
+                    👨‍🏫
+                </div>
+
+                <h3>
+                    Teachers
+                </h3>
+
+                <p>
+                    Manage teachers and Ustads
+                </p>
+
+            </div>
+
+
+            <!-- Notices -->
+
+            <div class="admin-card">
+
+                <div class="icon">
+                    📢
+                </div>
+
+                <h3>
+                    Notices
+                </h3>
+
+                <p>
+                    Add and manage notices
+                </p>
+
+            </div>
+
+
+            <!-- Programs -->
+
+            <div class="admin-card">
+
+                <div class="icon">
+                    📚
+                </div>
+
+                <h3>
+                    Programs
+                </h3>
+
+                <p>
+                    Manage Jamia programs
+                </p>
+
+            </div>
+
+
+            <!-- Gallery -->
+
+            <div class="admin-card">
+
+                <div class="icon">
+                    🖼️
+                </div>
+
+                <h3>
+                    Gallery
+                </h3>
+
+                <p>
+                    Manage Jamia photos
+                </p>
+
+            </div>
+
+
+            <!-- Admissions -->
+
+            <div class="admin-card">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <h3>
+                    Admissions
+                </h3>
+
+                <p>
+                    View admission enquiries
+                </p>
+
+            </div>
+
+
+            <!-- Calendar -->
+
+            <div class="admin-card">
+
+                <div class="icon">
+                    📅
+                </div>
+
+                <h3>
+                    Calendar
+                </h3>
+
+                <p>
+                    Manage important dates
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             TEACHERS MANAGEMENT
+        ========================= -->
+
+        <section class="admin-section">
+
+
+            <h2>
+                Teachers Management
+            </h2>
+
+
+            <!-- View Teachers -->
+
+            <button
+                onclick="loadTeachers()"
+                class="admin-btn">
+
+                View Teachers
+
+            </button>
+
+
+            <!-- =========================
+                 ADD TEACHER
+            ========================= -->
+
+            <div class="add-teacher-box">
+
+
+                <h2>
+                    Add New Teacher
+                </h2>
+
+
+                <form id="teacherForm">
+
+
+                    <!-- Name -->
+
+                    <input
+                        type="text"
+                        id="teacherName"
+                        placeholder="Teacher Name"
+                        required
+                    >
+
+
+                    <!-- Designation -->
+
+                    <input
+                        type="text"
+                        id="teacherDesignation"
+                        placeholder="Designation"
+                        required
+                    >
+
+
+                    <!-- Qualification -->
+
+                    <input
+                        type="text"
+                        id="teacherQualification"
+                        placeholder="Qualification"
+                        required
+                    >
+
+
+                    <!-- Photo -->
+
+                    <input
+                        type="text"
+                        id="teacherPhoto"
+                        placeholder="Photo URL"
+                    >
+
+
+                    <!-- Description -->
+
+                    <textarea
+                        id="teacherDescription"
+                        placeholder="Description"
+                    ></textarea>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="admin-btn">
+
+                        Add Teacher
+
+                    </button>
+
+
+                </form>
+
+
+                <p id="teacherMessage"></p>
+
+
+            </div>
+
+
+            <!-- =========================
+                 TEACHERS LIST
+            ========================= -->
+
+            <div id="teachersList"></div>
+
+
+        </section>
+<!-- =========================
+     NOTICES MANAGEMENT
+========================= -->
+
+<section class="admin-section">
+
+    <h2>
+        📢 Notices Management
+    </h2>
+
+    <!-- Add Notice -->
+
+    <div class="add-teacher-box">
+
+        <h2>
+            Add New Notice
+        </h2>
+
+        <form id="noticeForm">
+
+            <input
+                type="text"
+                id="noticeTitle"
+                placeholder="Notice Title"
+                required
+            >
+
+            <textarea
+                id="noticeDescription"
+                placeholder="Notice Description"
+                required
+            ></textarea>
+
+            <input
+                type="date"
+                id="noticeDate"
+            >
+
+            <button
+                type="submit"
+                class="admin-btn">
+
+                Add Notice
+
+            </button>
+
+        </form>
+
+        <p id="noticeMessage"></p>
+
+    </div>
+
+
+    <!-- Existing Notices -->
+
+    <h2>
+        Existing Notices
+    </h2>
+
+    <button
+        onclick="loadNotices()"
+        class="admin-btn">
+
+        View Notices
+
+    </button>
+
+    <div id="noticesList"></div>
+
+</section>
+<!-- =========================
+     PROGRAMS MANAGEMENT
+========================= -->
+
+<section class="admin-section">
+
+    <h2>📚 Programs Management</h2>
+
+    <!-- Add Program -->
+
+    <div class="add-teacher-box">
+
+        <h2>Add New Program</h2>
+
+        <form id="programForm">
+
+            <input
+                type="text"
+                id="programTitle"
+                placeholder="Program Title"
+                required
+            >
+
+            <textarea
+                id="programDescription"
+                placeholder="Program Description"
+                required
+            ></textarea>
+
+            <input
+                type="text"
+                id="programDuration"
+                placeholder="Duration e.g. 6 Years"
+                required
+            >
+
+            <input
+                type="text"
+                id="programImage"
+                placeholder="Image URL"
+            >
+
+            <button
+                type="submit"
+                class="admin-btn"
+            >
+                Add Program
+            </button>
+
+        </form>
+
+        <p id="programMessage"></p>
+
+    </div>
+
+
+    <!-- Existing Programs -->
+
+    <h2>Existing Programs</h2>
+
+    <button
+        onclick="loadPrograms()"
+        class="admin-btn"
+    >
+        View Programs
+    </button>
+
+    <div id="programsList"></div>
+
+</section>
+
+<!-- =========================
+     GALLERY MANAGEMENT
+========================= -->
+
+<section class="admin-section">
+
+    <h2>🖼️ Gallery Management</h2>
+
+    <!-- Add Gallery -->
+    <div class="add-teacher-box">
+
+        <h2>Add New Gallery Image</h2>
+
+        <form id="galleryForm">
+
+            <input
+                type="text"
+                id="galleryTitle"
+                placeholder="Image Title"
+                required
+            >
+
+            <input
+                type="text"
+                id="galleryImage"
+                placeholder="Image URL"
+                required
+            >
+
+            <textarea
+                id="galleryDescription"
+                placeholder="Image Description"
+            ></textarea>
+
+            <button
+                type="submit"
+                class="admin-btn">
+
+                Add Image
+
+            </button>
+
+        </form>
+
+        <p id="galleryMessage"></p>
+
+    </div>
+
+
+    <!-- Gallery List -->
+
+    <h2>Existing Gallery</h2>
+
+    <button
+        onclick="loadGallery()"
+        class="admin-btn">
+
+        View Gallery
+
+    </button>
+
+    <div id="galleryList"></div>
+
+</section>
+
+<!-- =========================
+     ADMISSIONS MANAGEMENT
+========================= -->
+
+<section class="admin-section">
+
+    <h2>📝 Admissions Management</h2>
+
+    <button
+        onclick="loadAdmissions()"
+        class="admin-btn"
+    >
+        View Admission Enquiries
+    </button>
+
+
+    <!-- SEARCH + FILTER -->
+    <div class="admission-tools">
+
+        <div class="admission-total">
+            <strong>Total Applications:</strong>
+            <span id="totalAdmissions">0</span>
+        </div>
+
+        <input
+            type="text"
+            id="admissionSearch"
+            placeholder="🔎 Search student..."
+            oninput="filterAdmissions()"
+        >
+
+        <select
+            id="admissionFilter"
+            onchange="filterAdmissions()"
+        >
+            <option value="All">All Status</option>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+        </select>
+
+    </div>
+
+
+    <div id="admissionsMessage"></div>
+
+    <div id="admissionsList"></div>
+
+</section>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================================
+           CHECK LOGIN
+        ========================================= */
+
+        const token = localStorage.getItem("token");
+
+
+        if (!token) {
+
+            window.location.href = "login.html";
+
+        }
+
+
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        function logout() {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem("adminUser");
+
+            window.location.href = "login.html";
+
+        }
+
+
+        /* =========================================
+           ADD TEACHER
+        ========================================= */
+
+        const teacherForm =
+            document.getElementById("teacherForm");
+
+
+        teacherForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const token =
+                    localStorage.getItem("token");
+
+
+                /* Token check */
+
+                if (!token) {
+
+                    document.getElementById(
+                        "teacherMessage"
+                    ).textContent =
+                        "Access denied. Please login first.";
+
+                    document.getElementById(
+                        "teacherMessage"
+                    ).style.color = "red";
+
+                    return;
+                }
+
+
+                /* Teacher data */
+
+                const teacherData = {
+
+                    name:
+                        document.getElementById(
+                            "teacherName"
+                        ).value.trim(),
+
+                    designation:
+                        document.getElementById(
+                            "teacherDesignation"
+                        ).value.trim(),
+
+                    qualification:
+                        document.getElementById(
+                            "teacherQualification"
+                        ).value.trim(),
+
+                    photo:
+                        document.getElementById(
+                            "teacherPhoto"
+                        ).value.trim(),
+
+                    description:
+                        document.getElementById(
+                            "teacherDescription"
+                        ).value.trim()
+
+                };
+
+
+                try {
+
+
+                    const response =
+                        await fetch(
+                            "http://localhost:5000/api/teachers",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json",
+
+                                    "Authorization":
+                                        "Bearer " + token
+
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        teacherData
+                                    )
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    const message =
+                        document.getElementById(
+                            "teacherMessage"
+                        );
+
+
+                    if (response.status === 401) {
+
+                        localStorage.removeItem(
+                            "token"
+                        );
+
+                        localStorage.removeItem(
+                            "adminUser"
+                        );
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+                    }
+
+
+                    if (data.success) {
+
+                        message.textContent =
+                            "Teacher added successfully ✅";
+
+                        message.style.color =
+                            "green";
+
+
+                        teacherForm.reset();
+
+
+                        loadTeachers();
+
+                    } else {
+
+                        message.textContent =
+                            data.message ||
+                            "Failed to add teacher";
+
+                        message.style.color =
+                            "red";
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+
+                    document.getElementById(
+                        "teacherMessage"
+                    ).textContent =
+                        "Server is not connected ❌";
+
+                    document.getElementById(
+                        "teacherMessage"
+                    ).style.color = "red";
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           LOAD TEACHERS
+        ========================================= */
+
+        async function loadTeachers() {
+
+
+            const token =
+                localStorage.getItem("token");
+
+
+            if (!token) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            const teachersList =
+                document.getElementById(
+                    "teachersList"
+                );
+
+
+            teachersList.innerHTML =
+                "<p>Loading teachers...</p>";
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/teachers",
+                        {
+
+                            method: "GET",
+
+                            headers: {
+
+                                "Authorization":
+                                    "Bearer " + token
+
+                            }
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                /* Unauthorized */
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+                    localStorage.removeItem(
+                        "adminUser"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                if (!data.success) {
+
+                    teachersList.innerHTML =
+                        `
+                        <p style="color:red;">
+                            ${data.message ||
+                            "Teachers load nahi ho paye."}
+                        </p>
+                        `;
+
+                    return;
+
+                }
+
+
+                /* No teachers */
+
+                if (
+                    !data.teachers ||
+                    data.teachers.length === 0
+                ) {
+
+                    teachersList.innerHTML =
+                        `
+                        <p>
+                            Abhi koi teacher available nahi hai.
+                        </p>
+                        `;
+
+                    return;
+
+                }
+
+
+                /* Clear */
+
+                teachersList.innerHTML = "";
+
+
+                /* Display teachers */
+
+                data.teachers.forEach(
+                    function(teacher) {
+
+
+                        teachersList.innerHTML += `
+
+                            <div
+                                class="teacher-admin-card"
+                            >
+
+                                ${
+                                    teacher.photo
+                                    ?
+                                    `
+                                    <img
+                                        src="${teacher.photo}"
+                                        alt="${teacher.name}"
+                                        style="
+                                            width:120px;
+                                            height:120px;
+                                            object-fit:cover;
+                                            border-radius:50%;
+                                            margin-bottom:15px;
+                                        "
+                                    >
+                                    `
+                                    :
+                                    ""
+                                }
+
+
+                                <h3>
+                                    ${teacher.name}
+                                </h3>
+
+
+                                <p>
+                                    <strong>
+                                        Designation:
+                                    </strong>
+
+                                    ${teacher.designation}
+                                </p>
+
+
+                                <p>
+                                    <strong>
+                                        Qualification:
+                                    </strong>
+
+                                    ${teacher.qualification}
+                                </p>
+
+
+                                <p>
+                                    ${teacher.description || ""}
+                                </p>
+
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="
+                                        deleteTeacher(
+                                            '${teacher._id}'
+                                        )
+                                    "
+                                >
+                                    Delete
+                                </button>
+
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+            } catch (error) {
+
+
+                console.error(error);
+
+
+                teachersList.innerHTML =
+                    `
+                    <p style="color:red;">
+                        Server is not connected.
+                    </p>
+                    `;
+
+            }
+
+        }
+
+
+        /* =========================================
+           DELETE TEACHER
+        ========================================= */
+
+        async function deleteTeacher(id) {
+
+
+            const token =
+                localStorage.getItem("token");
+
+
+            if (!token) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            const confirmDelete =
+                confirm(
+                    "Are you sure you want to delete this teacher?"
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        `http://localhost:5000/api/teachers/${id}`,
+                        {
+
+                            method: "DELETE",
+
+                            headers: {
+
+                                "Authorization":
+                                    "Bearer " + token
+
+                            }
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+                    localStorage.removeItem(
+                        "adminUser"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                alert(
+                    data.message ||
+                    "Teacher deleted"
+                );
+
+
+                if (data.success) {
+
+                    loadTeachers();
+
+                }
+
+
+            } catch (error) {
+
+
+                console.error(error);
+
+
+                alert(
+                    "Teacher delete nahi ho paya."
+                );
+
+            }
+
+        }
+/* =========================================
+   ADD NOTICE
+========================================= */
+
+const noticeForm =
+    document.getElementById("noticeForm");
+
+
+noticeForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const token =
+            localStorage.getItem("token");
+
+
+        if (!token) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        const noticeData = {
+
+            title:
+                document.getElementById(
+                    "noticeTitle"
+                ).value.trim(),
+
+            description:
+                document.getElementById(
+                    "noticeDescription"
+                ).value.trim(),
+
+            date:
+                document.getElementById(
+                    "noticeDate"
+                ).value
+
+        };
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "http://localhost:5000/api/notices",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                "Bearer " + token
+
+                        },
+
+                        body:
+                            JSON.stringify(
+                                noticeData
+                            )
+
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            const message =
+                document.getElementById(
+                    "noticeMessage"
+                );
+
+
+            if (response.status === 401) {
+
+                localStorage.removeItem("token");
+
+                localStorage.removeItem("adminUser");
+
+                window.location.href =
+                    "login.html";
+
+                return;
+            }
+
+
+            if (data.success) {
+
+                message.textContent =
+                    "Notice added successfully ✅";
+
+                message.style.color =
+                    "green";
+
+
+                noticeForm.reset();
+
+
+                loadNotices();
+
+            } else {
+
+                message.textContent =
+                    data.message ||
+                    "Notice add nahi ho paya.";
+
+                message.style.color =
+                    "red";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            document.getElementById(
+                "noticeMessage"
+            ).textContent =
+                "Server se connection nahi ho raha ❌";
+
+            document.getElementById(
+                "noticeMessage"
+            ).style.color =
+                "red";
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   LOAD NOTICES
+========================================= */
+
+async function loadNotices() {
+
+    const token =
+        localStorage.getItem("token");
+
+
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const noticesList =
+        document.getElementById(
+            "noticesList"
+        );
+
+
+    noticesList.innerHTML =
+        "<p>Loading notices...</p>";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/notices",
+                {
+
+                    method: "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            "Bearer " + token
+
+                    }
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem("adminUser");
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        if (!data.success) {
+
+            noticesList.innerHTML =
+                `
+                <p style="color:red;">
+                    ${data.message ||
+                    "Notices load nahi ho paye."}
+                </p>
+                `;
+
+            return;
+        }
+
+
+        if (
+            !data.notices ||
+            data.notices.length === 0
+        ) {
+
+            noticesList.innerHTML =
+                `
+                <p>
+                    Abhi koi notice available nahi hai.
+                </p>
+                `;
+
+            return;
+        }
+
+
+        noticesList.innerHTML = "";
+
+
+        data.notices.forEach(
+            function(notice) {
+
+                noticesList.innerHTML += `
+
+                    <div
+                        class="teacher-admin-card"
+                    >
+
+                        <h3>
+                            ${notice.title}
+                        </h3>
+
+                        <p>
+                            ${notice.description}
+                        </p>
+
+                        ${
+                            notice.date
+                            ?
+                            `
+                            <p>
+                                <strong>
+                                    Date:
+                                </strong>
+
+                                ${notice.date}
+                            </p>
+                            `
+                            :
+                            ""
+                        }
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="
+                                deleteNotice(
+                                    '${notice._id}'
+                                )
+                            "
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        noticesList.innerHTML =
+            `
+            <p style="color:red;">
+                Server se connection nahi ho raha.
+            </p>
+            `;
+
+    }
+
+}
+
+
+/* =========================================
+   DELETE NOTICE
+========================================= */
+
+async function deleteNotice(id) {
+
+    const token =
+        localStorage.getItem("token");
+
+
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this notice?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `http://localhost:5000/api/notices/${id}`,
+                {
+
+                    method: "DELETE",
+
+                    headers: {
+
+                        "Authorization":
+                            "Bearer " + token
+
+                    }
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem("adminUser");
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        if (data.success) {
+
+            alert(
+                "Notice deleted successfully ✅"
+            );
+
+            loadNotices();
+
+        } else {
+
+            alert(
+                data.message ||
+                "Notice delete nahi ho paya."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Server se connection nahi ho raha."
+        );
+
+    }
+
+}
+/* =========================================
+   ADD PROGRAM
+========================================= */
+
+const programForm =
+    document.getElementById("programForm");
+
+
+programForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const token =
+            localStorage.getItem("token");
+
+
+        if (!token) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        const programData = {
+
+            title:
+                document.getElementById(
+                    "programTitle"
+                ).value.trim(),
+
+            description:
+                document.getElementById(
+                    "programDescription"
+                ).value.trim(),
+
+            duration:
+                document.getElementById(
+                    "programDuration"
+                ).value.trim(),
+
+            image:
+                document.getElementById(
+                    "programImage"
+                ).value.trim()
+
+        };
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "http://localhost:5000/api/programs",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                "Bearer " + token
+
+                        },
+
+                        body:
+                            JSON.stringify(
+                                programData
+                            )
+
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            const message =
+                document.getElementById(
+                    "programMessage"
+                );
+
+
+            if (response.status === 401) {
+
+                localStorage.removeItem("token");
+
+                localStorage.removeItem(
+                    "adminUser"
+                );
+
+                window.location.href =
+                    "login.html";
+
+                return;
+            }
+
+
+            if (data.success) {
+
+                message.textContent =
+                    "Program added successfully ✅";
+
+                message.style.color =
+                    "green";
+
+
+                programForm.reset();
+
+
+                loadPrograms();
+
+            } else {
+
+                message.textContent =
+                    data.message ||
+                    "Program add nahi ho paya.";
+
+                message.style.color =
+                    "red";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            document.getElementById(
+                "programMessage"
+            ).textContent =
+                "Server se connection nahi ho raha ❌";
+
+            document.getElementById(
+                "programMessage"
+            ).style.color =
+                "red";
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+   LOAD PROGRAMS
+========================================= */
+
+async function loadPrograms() {
+
+    const token =
+        localStorage.getItem("token");
+
+
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const programsList =
+        document.getElementById(
+            "programsList"
+        );
+
+
+    programsList.innerHTML =
+        "<p>Loading programs...</p>";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/programs",
+                {
+
+                    method: "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            "Bearer " + token
+
+                    }
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem(
+                "adminUser"
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        if (!data.success) {
+
+            programsList.innerHTML =
+                `
+                <p style="color:red;">
+                    ${
+                        data.message ||
+                        "Programs load nahi ho paye."
+                    }
+                </p>
+                `;
+
+            return;
+        }
+
+
+        if (
+            !data.programs ||
+            data.programs.length === 0
+        ) {
+
+            programsList.innerHTML =
+                `
+                <p>
+                    Abhi koi program available nahi hai.
+                </p>
+                `;
+
+            return;
+        }
+
+
+        programsList.innerHTML = "";
+
+
+        data.programs.forEach(
+            function(program) {
+
+                programsList.innerHTML += `
+
+                    <div
+                        class="program-admin-card"
+                    >
+
+                        ${
+                            program.image
+                            ?
+                            `
+                            <img
+                                src="${program.image}"
+                                alt="${program.title}"
+                            >
+                            `
+                            :
+                            ""
+                        }
+
+
+                        <h3>
+                            ${program.title}
+                        </h3>
+
+
+                        <p>
+                            <strong>
+                                Description:
+                            </strong>
+
+                            ${program.description}
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Duration:
+                            </strong>
+
+                            ${program.duration}
+                        </p>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="
+                                deleteProgram(
+                                    '${program._id}'
+                                )
+                            "
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        programsList.innerHTML =
+            `
+            <p style="color:red;">
+                Server se connection nahi ho raha.
+            </p>
+            `;
+
+    }
+
+}
+
+
+
+/* =========================================
+   DELETE PROGRAM
+========================================= */
+
+async function deleteProgram(id) {
+
+    const token =
+        localStorage.getItem("token");
+
+
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this program?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `http://localhost:5000/api/programs/${id}`,
+                {
+
+                    method: "DELETE",
+
+                    headers: {
+
+                        "Authorization":
+                            "Bearer " + token
+
+                    }
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem(
+                "adminUser"
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        if (data.success) {
+
+            alert(
+                "Program deleted successfully ✅"
+            );
+
+            loadPrograms();
+
+        } else {
+
+            alert(
+                data.message ||
+                "Program delete nahi ho paya."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Server se connection nahi ho raha."
+        );
+
+    }
+
+}
+
+
+// =========================
+// GALLERY MANAGEMENT
+// =========================
+
+const galleryForm = document.getElementById("galleryForm");
+
+if (galleryForm) {
+
+    galleryForm.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        const title = document.getElementById("galleryTitle").value;
+        const image = document.getElementById("galleryImage").value;
+        const description =
+            document.getElementById("galleryDescription").value;
+
+        const message =
+            document.getElementById("galleryMessage");
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:5000/api/gallery",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token
+                    },
+
+                    body: JSON.stringify({
+                        title,
+                        image,
+                        description
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (response.status === 401) {
+
+                localStorage.removeItem("token");
+                localStorage.removeItem("adminUser");
+
+                window.location.href = "login.html";
+
+                return;
+            }
+
+            if (data.success) {
+
+                message.innerText =
+                    "Gallery image added successfully ✅";
+
+                message.style.color = "green";
+
+                galleryForm.reset();
+
+                loadGallery();
+
+            } else {
+
+                message.innerText =
+                    data.message || "Something went wrong";
+
+                message.style.color = "red";
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            message.innerText =
+                "Server error ❌";
+
+            message.style.color = "red";
+        }
+
+    });
+
+}
+
+
+// =========================
+// LOAD GALLERY
+// =========================
+
+async function loadGallery() {
+
+    const galleryList =
+        document.getElementById("galleryList");
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/gallery"
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+            galleryList.innerHTML =
+                "<p>Gallery load nahi ho payi.</p>";
+
+            return;
+        }
+
+        if (data.gallery.length === 0) {
+
+            galleryList.innerHTML =
+                "<p>No gallery images found.</p>";
+
+            return;
+        }
+
+        galleryList.innerHTML = "";
+
+        data.gallery.forEach(function (item) {
+
+            const card = document.createElement("div");
+
+            card.className = "gallery-admin-card";
+
+            card.innerHTML = `
+
+                <img
+                    src="${item.image}"
+                    alt="${item.title}"
+                    onerror="this.style.display='none'"
+                >
+
+                <h3>${item.title}</h3>
+
+                <p>
+                    ${item.description || "No description"}
+                </p>
+
+                <button
+                    class="gallery-delete-btn"
+                    onclick="deleteGallery('${item._id}')">
+
+                    Delete
+
+                </button>
+
+            `;
+
+            galleryList.appendChild(card);
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        galleryList.innerHTML =
+            "<p>Server error ❌</p>";
+    }
+}
+
+
+// =========================
+// DELETE GALLERY
+// =========================
+
+async function deleteGallery(id) {
+
+    const confirmDelete =
+        confirm("Are you sure you want to delete this image?");
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/api/gallery/${id}`,
+            {
+                method: "DELETE",
+
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("adminUser");
+
+            window.location.href = "login.html";
+
+            return;
+        }
+
+        if (data.success) {
+
+            alert("Gallery image deleted successfully ✅");
+
+            loadGallery();
+
+        } else {
+
+            alert(
+                data.message || "Delete failed"
+            );
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Server error ❌");
+    }
+}
+
+// =========================
+// ADMISSIONS MANAGEMENT
+// =========================
+
+let allAdmissions = [];
+
+async function loadAdmissions() {
+
+    const admissionsList =
+        document.getElementById("admissionsList");
+
+    admissionsList.innerHTML =
+        "<p>Loading admissions...</p>";
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/admissions",
+            {
+                method: "GET",
+
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            }
+        );
+
+        const data = await response.json();
+
+
+        // Login expired
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("adminUser");
+
+            window.location.href = "login.html";
+
+            return;
+        }
+
+
+        // Admin permission
+        if (response.status === 403) {
+
+            admissionsList.innerHTML =
+                "<p>Admin access required ❌</p>";
+
+            return;
+        }
+
+
+        if (!data.success) {
+
+            admissionsList.innerHTML =
+                "<p>Admissions load nahi ho payi.</p>";
+
+            return;
+        }
+
+
+        // Save all admissions
+        allAdmissions =
+            data.admissions || [];
+
+const filterInput =
+    document.getElementById("admissionFilter");
+
+if (filterInput) {
+    filterInput.value = "All";
+}
+        // Total Applications
+        const totalAdmissions =
+            document.getElementById("totalAdmissions");
+
+        if (totalAdmissions) {
+
+            totalAdmissions.textContent =
+                allAdmissions.length;
+
+        }
+
+
+        // Show admissions
+        renderAdmissions();
+
+
+    } catch (error) {
+
+        console.error(
+            "Admission Error:",
+            error
+        );
+
+        admissionsList.innerHTML =
+            "<p>Server error ❌</p>";
+
+    }
+
+}
+
+
+// =========================
+// RENDER ADMISSIONS
+// =========================
+
+function renderAdmissions() {
+
+    const admissionsList =
+        document.getElementById("admissionsList");
+
+    const searchInput =
+        document.getElementById("admissionSearch");
+
+    const filterInput =
+        document.getElementById("admissionFilter");
+
+
+    const searchText =
+        searchInput
+            ? searchInput.value
+                .toLowerCase()
+                .trim()
+            : "";
+
+
+    const selectedStatus =
+        filterInput
+            ? filterInput.value
+            : "All";
+
+
+    // Search + Status Filter
+    const filteredAdmissions =
+        allAdmissions.filter(function(admission) {
+
+            const studentName =
+                (admission.studentName || "")
+                .toLowerCase();
+
+            const fatherName =
+                (admission.fatherName || "")
+                .toLowerCase();
+
+            const mobile =
+                (admission.mobile || "")
+                .toLowerCase();
+
+
+            const matchesSearch =
+                studentName.includes(searchText) ||
+                fatherName.includes(searchText) ||
+                mobile.includes(searchText);
+
+
+            const admissionStatus =
+    admission.status || "New";
+
+const matchesStatus =
+    selectedStatus === "All" ||
+    admissionStatus === selectedStatus;
+            return (
+                matchesSearch &&
+                matchesStatus
+            );
+
+        });
+
+
+    // No result
+    if (filteredAdmissions.length === 0) {
+
+        admissionsList.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:30px;
+                color:#666;
+            ">
+                <p>🔍 not any admissions found.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    admissionsList.innerHTML = "";
+
+
+    filteredAdmissions.forEach(
+        function(admission) {
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "admission-card";
+
+
+            card.innerHTML = `
+
+                <h3>
+                    👨‍🎓 ${admission.studentName}
+                </h3>
+
+
+                <div class="admission-detail">
+                    <strong>Father Name:</strong>
+                    ${admission.fatherName}
+                </div>
+
+
+                <div class="admission-detail">
+                    <strong>Mobile:</strong>
+                    ${admission.mobile}
+                </div>
+
+
+                <div class="admission-detail">
+                    <strong>Email:</strong>
+                    ${admission.email || "Not provided"}
+                </div>
+
+
+                <div class="admission-detail">
+                    <strong>Program:</strong>
+                    ${admission.program}
+                </div>
+
+
+                <div class="admission-detail">
+                    <strong>Date of Birth:</strong>
+                    ${admission.dateOfBirth || "Not provided"}
+                </div>
+
+
+                <div class="admission-detail">
+                    <strong>Address:</strong>
+                    ${admission.address}
+                </div>
+
+
+                <div class="admission-detail">
+                    <strong>Message:</strong>
+                    ${admission.message || "No message"}
+                </div>
+
+
+                <div class="admission-detail">
+                    <strong>Applied On:</strong>
+                    ${
+                        admission.createdAt
+                        ? new Date(
+                            admission.createdAt
+                        ).toLocaleDateString()
+                        : "N/A"
+                    }
+                </div>
+
+
+                <select
+                    class="admission-status"
+                    id="status-${admission._id}"
+                >
+
+                    <option value="New"
+                        ${
+                            admission.status === "New"
+                            ? "selected"
+                            : ""
+                        }>
+                        New
+                    </option>
+
+
+                    <option value="Contacted"
+                        ${
+                            admission.status === "Contacted"
+                            ? "selected"
+                            : ""
+                        }>
+                        Contacted
+                    </option>
+
+
+                    <option value="Approved"
+                        ${
+                            admission.status === "Approved"
+                            ? "selected"
+                            : ""
+                        }>
+                        Approved
+                    </option>
+
+
+                    <option value="Rejected"
+                        ${
+                            admission.status === "Rejected"
+                            ? "selected"
+                            : ""
+                        }>
+                        Rejected
+                    </option>
+
+                </select>
+
+
+                <div class="admission-actions">
+
+    <!-- Call -->
+    <a
+        href="tel:${admission.mobile}"
+        class="admission-call-btn"
+    >
+        📞 Call
+    </a>
+
+
+    <!-- WhatsApp -->
+   <a
+    href="https://wa.me/${
+        String(admission.mobile).replace(/\D/g, "").startsWith("91")
+            ? String(admission.mobile).replace(/\D/g, "")
+            : "91" + String(admission.mobile).replace(/\D/g, "")
+    }"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="admission-whatsapp-btn"
+>
+    💬 WhatsApp
+</a>
+
+
+    <!-- Update -->
+    <button
+        class="admission-update-btn"
+        onclick="updateAdmissionStatus(
+            '${admission._id}'
+        )"
+    >
+        Update Status
+    </button>
+
+
+    <!-- Delete -->
+    <button
+        class="admission-delete-btn"
+        onclick="deleteAdmission(
+            '${admission._id}'
+        )"
+    >
+        Delete
+    </button>
+
+</div>
+
+            `;
+
+
+            admissionsList.appendChild(card);
+
+        }
+    );
+
+}
+
+
+// =========================
+// SEARCH + FILTER
+// =========================
+
+function filterAdmissions() {
+
+    renderAdmissions();
+
+}
+
+
+
+// =========================
+// UPDATE STATUS
+// =========================
+
+async function updateAdmissionStatus(id) {
+
+    const statusElement =
+        document.getElementById(
+            "status-" + id
+        );
+
+    const status =
+        statusElement.value;
+
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/api/admissions/${id}`,
+            {
+                method: "PUT",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+
+                body: JSON.stringify({
+                    status: status
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("adminUser");
+
+            window.location.href = "login.html";
+
+            return;
+        }
+
+
+        if (data.success) {
+
+            alert(
+                "Admission status updated successfully ✅"
+            );
+
+            loadAdmissions();
+
+        } else {
+
+            alert(
+                data.message ||
+                "Status update failed"
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Server error ❌"
+        );
+
+    }
+
+}
+
+
+
+// =========================
+// DELETE ADMISSION
+// =========================
+
+async function deleteAdmission(id) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this admission?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/api/admissions/${id}`,
+            {
+                method: "DELETE",
+
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("adminUser");
+
+            window.location.href = "login.html";
+
+            return;
+        }
+
+
+        if (data.success) {
+
+            alert(
+                "Admission deleted successfully ✅"
+            );
+
+            loadAdmissions();
+
+        } else {
+
+            alert(
+                data.message ||
+                "Delete failed"
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Server error ❌"
+        );
+
+    }
+
+}
+// =========================
+// DASHBOARD STATISTICS
+// =========================
+
+async function loadDashboardStats() {
+
+    try {
+
+        // Teachers
+        const teachersResponse =
+            await fetch(
+                "http://localhost:5000/api/teachers"
+            );
+
+        const teachersData =
+            await teachersResponse.json();
+
+
+        // Programs
+        const programsResponse =
+            await fetch(
+                "http://localhost:5000/api/programs"
+            );
+
+        const programsData =
+            await programsResponse.json();
+
+
+        // Gallery
+        const galleryResponse =
+            await fetch(
+                "http://localhost:5000/api/gallery"
+            );
+
+        const galleryData =
+            await galleryResponse.json();
+
+
+        // Admissions
+        const admissionsResponse =
+            await fetch(
+                "http://localhost:5000/api/admissions",
+                {
+                    headers: {
+                        "Authorization":
+                            "Bearer " + token
+                    }
+                }
+            );
+
+        const admissionsData =
+            await admissionsResponse.json();
+
+
+        // Set counts
+
+        document.getElementById(
+            "statTeachers"
+        ).textContent =
+            teachersData.teachers
+                ? teachersData.teachers.length
+                : 0;
+
+
+        document.getElementById(
+            "statPrograms"
+        ).textContent =
+            programsData.programs
+                ? programsData.programs.length
+                : 0;
+
+
+        document.getElementById(
+            "statGallery"
+        ).textContent =
+            galleryData.gallery
+                ? galleryData.gallery.length
+                : 0;
+
+
+        document.getElementById(
+            "statAdmissions"
+        ).textContent =
+            admissionsData.admissions
+                ? admissionsData.admissions.length
+                : 0;
+
+
+    } catch (error) {
+
+        console.error(
+            "Dashboard Stats Error:",
+            error
+        );
+
+    }
+
+}
+loadDashboardStats();
+    </script>
+
+
+</body>
+
+</html>

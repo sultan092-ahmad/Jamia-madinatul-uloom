@@ -2900,3 +2900,1299 @@ body:has(.hero-home) .nav {
   }
 
 }
+
+/* =========================================================
+   LEADERSHIP PAGE
+   Added to existing style.css
+========================================================= */
+
+
+/* =========================================================
+   LEADERSHIP HERO
+========================================================= */
+
+.leadership-page {
+  background: #f7f5ee;
+  color: #0e2422;
+}
+
+.leadership-hero {
+  position: relative;
+  padding: 95px 20px 80px;
+  text-align: center;
+
+  background:
+    linear-gradient(
+      rgba(8, 48, 47, 0.90),
+      rgba(8, 48, 47, 0.90)
+    ),
+    url("../images/library.jpeg");
+
+  background-size: cover;
+  background-position: center;
+
+  color: white;
+  overflow: hidden;
+}
+
+.leadership-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(194, 155, 60, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(194, 155, 60, 0.14),
+      transparent 35%
+    );
+
+  pointer-events: none;
+}
+
+.leadership-hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 900px;
+  margin: auto;
+}
+
+.leadership-arabic {
+  font-family: "Amiri", serif;
+  font-size: 30px;
+  color: #e6d3a0;
+  margin-bottom: 15px;
+}
+
+.leadership-hero h1 {
+  font-family: "Amiri", serif;
+
+  font-size: clamp(42px, 6vw, 70px);
+
+  line-height: 1.05;
+
+  margin-bottom: 15px;
+}
+
+.leadership-hero h1 span {
+  color: #e6d3a0;
+}
+
+.leadership-hero p {
+  max-width: 700px;
+  margin: auto;
+
+  font-size: 18px;
+  line-height: 1.7;
+
+  color: #eef4f1;
+}
+
+
+/* =========================================================
+   GOLD DIVIDER
+========================================================= */
+
+.gold-divider {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 14px;
+
+  margin: 25px 0;
+}
+
+.gold-divider span {
+  display: block;
+
+  width: 70px;
+  height: 2px;
+
+  background: #c29b3c;
+}
+
+.gold-divider b {
+  color: #c29b3c;
+  font-size: 22px;
+}
+
+
+/* =========================================================
+   LEADERSHIP CONTENT
+========================================================= */
+
+.leadership-content {
+  padding: 75px 0;
+}
+
+
+/* =========================================================
+   SARBARAH-E-AALA
+========================================================= */
+
+.sarbarah-card {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1.2fr;
+
+  gap: 35px;
+
+  max-width: 1100px;
+
+  margin: 0 auto 80px;
+
+  padding: 42px;
+
+  background: #fffdf7;
+
+  border: 2px solid #c29b3c;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 18px 45px rgba(8, 48, 47, 0.12);
+
+  overflow: hidden;
+}
+
+.sarbarah-card::before {
+  content: "۞";
+
+  position: absolute;
+
+  top: 15px;
+  left: 20px;
+
+  font-size: 85px;
+
+  color: rgba(194, 155, 60, 0.08);
+}
+
+.sarbarah-card::after {
+  content: "۞";
+
+  position: absolute;
+
+  right: 20px;
+  bottom: 0;
+
+  font-size: 85px;
+
+  color: rgba(194, 155, 60, 0.08);
+}
+
+
+/* =========================================================
+   SARBARAH INFO
+========================================================= */
+
+.sarbarah-info {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  padding: 20px;
+}
+
+.leader-icon {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  background: #c29b3c;
+
+  color: white;
+
+  font-size: 34px;
+
+  box-shadow:
+    0 8px 20px rgba(194, 155, 60, 0.30);
+}
+
+.sarbarah-label {
+  display: inline-block;
+
+  padding: 9px 28px;
+
+  border-radius: 30px;
+
+  background: #08302f;
+
+  color: #e6d3a0;
+
+  font-family: "Amiri", serif;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  margin-bottom: 20px;
+}
+
+.sarbarah-name {
+  font-family: "Amiri", serif;
+
+  font-size: clamp(30px, 4vw, 45px);
+
+  line-height: 1.25;
+
+  color: #08302f;
+
+  margin-bottom: 18px;
+}
+
+.sarbarah-role {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  color: #b1872e;
+
+  font-weight: 700;
+
+  margin-bottom: 5px;
+}
+
+.sarbarah-role span {
+  width: 45px;
+  height: 2px;
+
+  background: #c29b3c;
+}
+
+.sarbarah-jamia {
+  color: #45605c;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   SARBARAH OPINION
+========================================================= */
+
+.sarbarah-opinion {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.opinion-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 15px 20px;
+
+  background: #fff4dc;
+
+  border-radius: 15px;
+
+  color: #08302f;
+}
+
+.thinking {
+  font-size: 34px;
+
+  flex-shrink: 0;
+}
+
+.opinion-title h3 {
+  font-family: "Amiri", serif;
+
+  font-size: 25px;
+
+  line-height: 1.25;
+
+  margin: 0;
+}
+
+.opinion-box {
+  position: relative;
+
+  margin-top: 18px;
+
+  padding: 28px 35px;
+
+  background: #edf4f1;
+
+  border-radius: 18px;
+
+  border-left: 5px solid #c29b3c;
+}
+
+.quote-mark {
+  position: absolute;
+
+  font-family: Georgia, serif;
+
+  font-size: 70px;
+
+  color: #c29b3c;
+
+  line-height: 1;
+}
+
+.quote-open {
+  top: 5px;
+  left: 15px;
+}
+
+.quote-close {
+  right: 15px;
+  bottom: -20px;
+}
+
+.opinion-box p {
+  font-size: 17px;
+
+  line-height: 1.9;
+
+  color: #34504c;
+
+  font-style: italic;
+
+  margin: 0;
+}
+
+
+/* =========================================================
+   TEAM HEADING
+========================================================= */
+
+.team-heading {
+  text-align: center;
+
+  margin-bottom: 45px;
+}
+
+.team-heading-icon {
+  font-size: 40px;
+
+  margin-bottom: 8px;
+}
+
+.team-heading h2 {
+  font-family: "Amiri", serif;
+
+  color: #08302f;
+
+  font-size: clamp(32px, 5vw, 48px);
+
+  line-height: 1.2;
+
+  margin-bottom: 15px;
+}
+
+.team-heading p {
+  color: #5a6e6a;
+
+  font-size: 17px;
+
+  max-width: 650px;
+
+  margin: auto;
+}
+
+
+/* =========================================================
+   TEACHERS GRID
+========================================================= */
+
+.teachers-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 25px;
+
+  max-width: 1150px;
+
+  margin: auto;
+}
+
+
+/* =========================================================
+   TEACHER CARD
+========================================================= */
+
+.teacher-card {
+  position: relative;
+
+  min-height: 235px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  text-align: center;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf7,
+      #f7f4e9
+    );
+
+  border: 1px solid #e2dccb;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 25px rgba(8, 48, 47, 0.08);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.teacher-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow:
+    0 18px 35px rgba(8, 48, 47, 0.15);
+}
+
+.teacher-icon {
+  position: absolute;
+
+  top: 22px;
+
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fffdf7;
+
+  border: 2px solid #e6c875;
+
+  color: #08302f;
+
+  font-size: 38px;
+
+  box-shadow:
+    0 5px 15px rgba(194, 155, 60, 0.15);
+}
+
+.teacher-name {
+  position: relative;
+
+  width: calc(100% + 40px);
+
+  margin: 0 -20px -20px;
+
+  min-height: 105px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 15px;
+
+  background: #08302f;
+
+  color: #fffdf7;
+
+  font-family: "Amiri", serif;
+
+  font-size: 19px;
+
+  line-height: 1.35;
+
+  font-weight: 700;
+}
+
+.teacher-name::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 10px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 45px;
+
+  height: 2px;
+
+  background: #c29b3c;
+}
+
+
+/* =========================================================
+   CLOSING QUOTE
+========================================================= */
+
+.closing-quote {
+  max-width: 1100px;
+
+  margin: 75px auto 0;
+
+  padding: 45px 25px;
+
+  text-align: center;
+
+  background: #fffdf7;
+
+  border: 1px solid #dfd2ad;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 10px 30px rgba(8, 48, 47, 0.07);
+}
+
+.closing-quote .book {
+  font-size: 40px;
+
+  margin-bottom: 15px;
+}
+
+.closing-quote p {
+  font-family: "Amiri", serif;
+
+  font-size: clamp(22px, 3vw, 30px);
+
+  font-style: italic;
+
+  color: #08302f;
+
+  max-width: 850px;
+
+  margin: auto;
+}
+
+.closing-divider {
+  margin-top: 22px;
+
+  color: #c29b3c;
+
+  font-size: 25px;
+}
+
+
+/* =========================================================
+   LEADERSHIP PAGE RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .sarbarah-card {
+    grid-template-columns: 1fr;
+
+    padding: 30px;
+  }
+
+  .teachers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .leadership-hero {
+    padding: 75px 18px 60px;
+  }
+
+  .leadership-arabic {
+    font-size: 24px;
+  }
+
+  .leadership-hero h1 {
+    font-size: 43px;
+  }
+
+  .leadership-hero p {
+    font-size: 15px;
+  }
+
+  .leadership-content {
+    padding: 50px 0;
+  }
+
+  .sarbarah-card {
+    margin-bottom: 55px;
+
+    padding: 22px 16px;
+
+    border-radius: 20px;
+  }
+
+  .sarbarah-name {
+    font-size: 31px;
+  }
+
+  .sarbarah-label {
+    font-size: 19px;
+  }
+
+  .opinion-title {
+    align-items: flex-start;
+  }
+
+  .thinking {
+    font-size: 28px;
+  }
+
+  .opinion-title h3 {
+    font-size: 21px;
+  }
+
+  .opinion-box {
+    padding: 25px 22px;
+  }
+
+  .opinion-box p {
+    font-size: 15px;
+  }
+
+  .teachers-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .teacher-card {
+    min-height: 220px;
+  }
+
+  .team-heading h2 {
+    font-size: 34px;
+  }
+
+  .team-heading p {
+    font-size: 15px;
+
+    padding: 0 15px;
+  }
+
+  .closing-quote {
+    margin-top: 55px;
+
+    padding: 35px 20px;
+  }
+
+}
+
+/* ================================
+   TEACHERS MANAGEMENT
+================================ */
+
+.admin-section {
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+.admin-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #063b35;
+}
+
+.admin-btn {
+    background: #063b35;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.admin-btn:hover {
+    background: #087f70;
+}
+
+#teachersList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.teacher-admin-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.teacher-admin-card h3 {
+    color: #063b35;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.teacher-admin-card p {
+    margin: 8px 0;
+    color: #555;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .admin-section {
+        padding: 20px;
+    }
+
+    .admin-section h2 {
+        font-size: 28px;
+    }
+
+    #teachersList {
+        grid-template-columns: 1fr;
+    }
+}
+.add-teacher-box {
+    background: white;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.add-teacher-box h2 {
+    color: #063b35;
+    margin-bottom: 20px;
+}
+
+#teacherForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#teacherForm input,
+#teacherForm textarea {
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+#teacherForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* =========================
+   FACILITIES GALLERY STYLE
+========================= */
+
+.facility-gallery-grid {
+    margin-top: 30px;
+}
+
+.facility-gallery-item {
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 14px;
+}
+
+.facility-gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+}
+
+.facility-info {
+    padding: 18px 8px 8px;
+}
+
+.facility-info h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: #073b36;
+}
+
+.facility-info p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+/* Hover effect */
+
+.facility-gallery-item {
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.facility-gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .facility-gallery-item img {
+        height: 240px;
+    }
+
+    .facility-info {
+        padding: 15px 5px;
+    }
+
+    .facility-info h3 {
+        font-size: 20px;
+    }
+
+}
+
+/* =========================================
+   NOTICE PAGE
+========================================= */
+
+.notice-page {
+    padding: 90px 0;
+    background: #f7f9f8;
+    min-height: 70vh;
+}
+
+
+.notice-page-heading {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+
+.notice-small-title {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #c99b2b;
+    margin-bottom: 10px;
+}
+
+
+.notice-page-heading h1 {
+    margin: 0 0 15px;
+    font-family: var(--serif);
+    color: #073b36;
+    font-size: 48px;
+}
+
+
+.notice-page-heading p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+
+.notice-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+
+.notice-page-card {
+    background: #ffffff;
+    border: 1px solid #e4e8e6;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+
+.notice-page-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+}
+
+
+.notice-card-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 50%;
+
+    background: #eef6f4;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.notice-card-content h2 {
+    margin: 0 0 10px;
+    color: #073b36;
+    font-size: 22px;
+}
+
+
+.notice-card-content p {
+    margin: 10px 0 0;
+    color: #666;
+    line-height: 1.7;
+}
+
+
+.notice-card-date {
+    color: #b38316;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.notice-message {
+    text-align: center;
+    padding: 35px;
+    color: #666;
+}
+
+
+/* Mobile */
+
+@media (max-width: 750px) {
+
+    .notice-page {
+        padding: 60px 0;
+    }
+
+    .notice-page-heading h1 {
+        font-size: 34px;
+    }
+
+    .notice-page-heading p {
+        font-size: 15px;
+    }
+
+    .notice-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notice-page-card {
+        padding: 20px;
+    }
+
+}
+/* =========================================
+   HERO POSITION FIX
+========================================= */
+
+.hero-home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 650px;
+    overflow: hidden;
+}
+
+
+/* Background */
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center center;
+
+    z-index: 0;
+}
+
+
+/* Overlay */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+
+/* Navbar */
+
+.hero-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 20;
+}
+
+
+/* HERO CONTENT */
+
+.hero-content {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: flex-start;
+
+    /* IMPORTANT */
+    padding-top: 175px;
+
+    padding-left: 45px;
+    padding-right: 40px;
+}
+
+
+/* Hero text */
+
+.hero-text {
+    max-width: 700px;
+}
+
+
+/* Arabic */
+
+.hero-arabic {
+    margin-bottom: 8px;
+
+    color: #f2bd32;
+
+    font-size: 30px;
+
+    line-height: 1.25;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,0.7);
+}
+
+
+/* Heading */
+
+.hero-text h1 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(60px, 6vw, 96px);
+
+    line-height: 0.88;
+}
+
+
+/* Description */
+
+.hero-description {
+    max-width: 650px;
+
+    margin-top: 25px;
+
+    color: #fff;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+}
+
+
+/* Buttons */
+
+.hero-buttons {
+    margin-top: 22px;
+}
+
+
+/* Feature cards */
+
+.hero-features {
+    margin-top: 22px;
+}
+
+
+/* Remove horizontal scrollbar */
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .hero-home {
+        min-height: 650px;
+    }
+
+    .hero-content {
+
+        padding-top: 135px;
+
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .hero-arabic {
+        font-size: 24px;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(50px, 13vw, 72px);
+    }
+
+    .hero-description {
+        font-size: 15px;
+        margin-top: 18px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE NAVBAR FINAL FIX
+   ===================================================== */
+
+@media (max-width: 850px) {
+
+    /* Original navbar ko visible rakho */
+    body:has(.hero-home) .nav {
+        display: block !important;
+        position: sticky !important;
+        top: 0;
+        width: 100%;
+        z-index: 999999 !important;
+    }
+
+    /* Navbar height */
+    body:has(.hero-home) .nav .wrap {
+        height: 64px !important;
+        min-height: 64px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    /* Mobile menu button visible */
+    body:has(.hero-home) .menu-btn {
+        display: block !important;
+        position: relative;
+        z-index: 1000000;
+    }
+
+    /* Mobile links */
+    body:has(.hero-home) .links {
+        display: none !important;
+        position: absolute !important;
+        top: 64px !important;
+        left: 12px !important;
+        right: 12px !important;
+        z-index: 1000001 !important;
+    }
+
+    /* Menu open hone par links dikhen */
+    body:has(.hero-home) .links.open {
+        display: flex !important;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+
+    body:has(.hero-home) .brand span {
+        font-size: 0.95rem !important;
+    }
+
+    body:has(.hero-home) .site-logo,
+    body:has(.hero-home) .brand img {
+        width: 34px !important;
+        height: 34px !important;
+    }
+
+    body:has(.hero-home) .menu-btn {
+        padding: 7px 13px !important;
+        font-size: 13px;
+    }
+}

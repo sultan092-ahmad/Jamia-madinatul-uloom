@@ -183,132 +183,201 @@ if (programTabs.length > 0 && programPanels.length > 0) {
 
 
 /* =====================================================
-   3. ADMISSION FORM → WHATSAPP
+   3. ADMISSION FORM → MONGODB
 ===================================================== */
 
-// Apna actual WhatsApp number yahan add karo
-// Example: 919876543210
-
-const WHATSAPP_NUMBER = "+91 80843 23226";
-
-
 const enquiryForm =
-  document.getElementById("enquiry");
+    document.getElementById("enquiry");
 
 
 if (enquiryForm) {
 
-  enquiryForm.addEventListener(
-    "submit",
-    function (event) {
+    enquiryForm.addEventListener(
+        "submit",
+        async function (event) {
 
-      event.preventDefault();
-
-
-      const status =
-        document.getElementById("status");
+            event.preventDefault();
 
 
-      const formData =
-        new FormData(enquiryForm);
+            const status =
+                document.getElementById("status");
 
 
-      const guardian =
-        formData.get("guardian").trim();
-
-      const student =
-        formData.get("student").trim();
-
-      const program =
-        formData.get("program");
-
-      const phone =
-        formData.get("phone").trim();
-
-      const note =
-        formData.get("note").trim();
+            const guardian =
+                document
+                    .getElementById("guardian")
+                    .value
+                    .trim();
 
 
-      // Required fields check
-      if (
-        !guardian ||
-        !student ||
-        !phone
-      ) {
+            const student =
+                document
+                    .getElementById("student")
+                    .value
+                    .trim();
 
-        if (status) {
 
-          status.textContent =
-            "Please fill in the guardian name, student name and phone number.";
+            const program =
+                document
+                    .getElementById("program")
+                    .value;
+
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const dateOfBirth =
+                document
+                    .getElementById("dateOfBirth")
+                    .value;
+
+
+            const address =
+                document
+                    .getElementById("address")
+                    .value
+                    .trim();
+
+
+            const note =
+                document
+                    .getElementById("note")
+                    .value
+                    .trim();
+
+
+            // Required fields
+
+            if (
+                !guardian ||
+                !student ||
+                !phone ||
+                !program ||
+                !address
+            ) {
+
+                status.textContent =
+                    "Please fill all required fields.";
+
+                status.style.color =
+                    "red";
+
+                return;
+            }
+
+
+            // Loading message
+
+            status.textContent =
+                "Submitting your enquiry...";
+
+            status.style.color =
+                "#073b36";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/admissions",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                studentName:
+                                    student,
+
+                                fatherName:
+                                    guardian,
+
+                                mobile:
+                                    phone,
+
+                                email:
+                                    email,
+
+                                program:
+                                    program,
+
+                                dateOfBirth:
+                                    dateOfBirth,
+
+                                address:
+                                    address,
+
+                                message:
+                                    note
+
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Admission submission failed"
+                    );
+
+                }
+
+
+                // Success
+
+                status.textContent =
+                    "Admission enquiry submitted successfully ✅";
+
+                status.style.color =
+                    "green";
+
+
+                // Clear form
+
+                enquiryForm.reset();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Admission Error:",
+                    error
+                );
+
+
+                status.textContent =
+                    "Unable to submit enquiry. Please try again.";
+
+                status.style.color =
+                    "red";
+
+            }
 
         }
-
-        return;
-
-      }
-
-
-      // WhatsApp number check
-      if (
-        WHATSAPP_NUMBER.includes("X")
-      ) {
-
-        if (status) {
-
-          status.textContent =
-            "Please add the Jamia WhatsApp number in script.js.";
-
-        }
-
-        return;
-
-      }
-
-
-      // WhatsApp message
-      const message =
-`Assalam Wa Alaikum.
-
-I would like to enquire about admission at Jamia Madinatul Uloom.
-
-Guardian Name: ${guardian}
-
-Student Name: ${student}
-
-Program: ${program}
-
-Phone Number: ${phone}
-
-${note ? "Additional Note: " + note : ""}`;
-
-
-      // WhatsApp URL
-      const whatsappURL =
-        "https://wa.me/" +
-        WHATSAPP_NUMBER +
-        "?text=" +
-        encodeURIComponent(message);
-
-
-      // WhatsApp open
-      window.open(
-        whatsappURL,
-        "_blank"
-      );
-
-
-      if (status) {
-
-        status.textContent =
-          "WhatsApp is opening with your message.";
-
-      }
-
-    }
-  );
+    );
 
 }
-
 
 /* =====================================================
    4. SMOOTH SCROLL
@@ -804,3 +873,171 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+
+/* =========================================================
+   LEADERSHIP PAGE JAVASCRIPT
+========================================================= */
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const leadershipMenuBtn =
+  document.getElementById("menuBtn");
+
+const leadershipLinks =
+  document.getElementById("links");
+
+
+if (
+  leadershipMenuBtn &&
+  leadershipLinks
+) {
+
+  leadershipMenuBtn.addEventListener(
+    "click",
+    function () {
+
+      const isOpen =
+        leadershipLinks.classList.toggle("open");
+
+      leadershipMenuBtn.setAttribute(
+        "aria-expanded",
+        isOpen
+      );
+
+    }
+  );
+
+
+  /* Close menu after clicking a link */
+
+  leadershipLinks
+    .querySelectorAll("a")
+    .forEach(function (link) {
+
+      link.addEventListener(
+        "click",
+        function () {
+
+          leadershipLinks.classList.remove(
+            "open"
+          );
+
+          leadershipMenuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   MORE DROPDOWN
+========================================================= */
+
+const leadershipDropdownBtn =
+  document.querySelector(".dropdown-btn");
+
+const leadershipDropdown =
+  document.querySelector(".nav-dropdown");
+
+
+if (
+  leadershipDropdownBtn &&
+  leadershipDropdown
+) {
+
+  leadershipDropdownBtn.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+      leadershipDropdown.classList.toggle(
+        "active"
+      );
+
+    }
+  );
+
+
+  /* Close dropdown when clicking outside */
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        !leadershipDropdown.contains(
+          event.target
+        )
+      ) {
+
+        leadershipDropdown.classList.remove(
+          "active"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LEADERSHIP PAGE SCROLL
+========================================================= */
+
+document
+  .querySelectorAll(
+    '.leadership-page a[href^="#"]'
+  )
+  .forEach(function (link) {
+
+    link.addEventListener(
+      "click",
+      function (event) {
+
+        const targetId =
+          this.getAttribute("href");
+
+
+        if (
+          targetId &&
+          targetId !== "#"
+        ) {
+
+          const target =
+            document.querySelector(
+              targetId
+            );
+
+
+          if (target) {
+
+            event.preventDefault();
+
+
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+
+        }
+
+    }
+    );
+
+});
+

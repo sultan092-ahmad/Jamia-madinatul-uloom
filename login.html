@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | Jamia Madinatul Uloom</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+        }
+
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 45px;
+        }
+
+        .login-box h1 {
+            text-align: center;
+            color: #073b36;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .login-box label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: #073b36;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #073b36;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #0b514a;
+        }
+
+        .login-message {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #073b36;
+            text-decoration: none;
+        }
+
+        @media (max-width: 500px) {
+            .login-box {
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <div class="login-box">
+
+            <h1>Admin Login</h1>
+
+            <p class="login-subtitle">
+                Jamia Madinatul Uloom
+            </p>
+
+            <form id="loginForm">
+
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter admin email"
+                    required
+                >
+
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required
+                >
+
+                <button type="submit" class="login-btn">
+                    Login
+                </button>
+
+            </form>
+
+            <div id="loginMessage" class="login-message"></div>
+
+            <a href="index.html" class="back-home">
+                ← Back to Website
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const loginForm = document.getElementById("loginForm");
+        const loginMessage = document.getElementById("loginMessage");
+
+        loginForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            loginMessage.textContent = "Logging in...";
+
+            try {
+
+                const response = await fetch(
+                    "http://localhost:5000/api/auth/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.success) {
+
+                    // Save JWT
+                    localStorage.setItem(
+                        "token",
+                        data.token
+                    );
+
+                    // Save admin information
+                    localStorage.setItem(
+                        "adminUser",
+                        JSON.stringify(data.user)
+                    );
+
+                    loginMessage.textContent =
+                        "Login successful! Redirecting...";
+
+                    // Open admin panel
+                    setTimeout(function() {
+                        window.location.href = "admin.html";
+                    }, 500);
+
+                } else {
+
+                    loginMessage.textContent =
+                        data.message || "Login failed";
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                loginMessage.textContent =
+                    "Server se connection nahi ho raha.";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
