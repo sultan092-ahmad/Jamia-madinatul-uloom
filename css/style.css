@@ -4130,78 +4130,11 @@ body {
 
 }
 
-
-/* =====================================================
-   MOBILE NAVBAR FINAL FIX
-   ===================================================== */
-
-@media (max-width: 850px) {
-
-    /* Original navbar ko visible rakho */
-    body:has(.hero-home) .nav {
-        display: block !important;
-        position: sticky !important;
-        top: 0;
-        width: 100%;
-        z-index: 999999 !important;
-    }
-
-    /* Navbar height */
-    body:has(.hero-home) .nav .wrap {
-        height: 64px !important;
-        min-height: 64px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-    }
-
-    /* Mobile menu button visible */
-    body:has(.hero-home) .menu-btn {
-        display: block !important;
-        position: relative;
-        z-index: 1000000;
-    }
-
-    /* Mobile links */
-    body:has(.hero-home) .links {
-        display: none !important;
-        position: absolute !important;
-        top: 64px !important;
-        left: 12px !important;
-        right: 12px !important;
-        z-index: 1000001 !important;
-    }
-
-    /* Menu open hone par links dikhen */
-    body:has(.hero-home) .links.open {
-        display: flex !important;
-    }
-}
-
-/* Very small phones */
-@media (max-width: 480px) {
-
-    body:has(.hero-home) .brand span {
-        font-size: 0.95rem !important;
-    }
-
-    body:has(.hero-home) .site-logo,
-    body:has(.hero-home) .brand img {
-        width: 34px !important;
-        height: 34px !important;
-    }
-
-    body:has(.hero-home) .menu-btn {
-        padding: 7px 13px !important;
-        font-size: 13px;
-    }
-}
-
 /* =====================================================
    FINAL ORIGINAL NAVBAR FIX
    ===================================================== */
 
-/* Homepage par original navbar visible */
+/* Original navbar show */
 body:has(.hero-home) .nav {
     display: block !important;
     position: sticky !important;
@@ -4216,13 +4149,13 @@ body:has(.hero-home) .hero-navbar {
     display: none !important;
 }
 
-/* Hero content navbar ke neeche rahe */
+/* Hero content navbar ke neeche */
 body:has(.hero-home) .hero-content {
     padding-top: 125px !important;
 }
 
 /* Mobile */
-@media (max-width: 850px) {
+@media (max-width: 950px) {
 
     body:has(.hero-home) .nav {
         display: block !important;
