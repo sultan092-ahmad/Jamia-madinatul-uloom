@@ -1930,247 +1930,6 @@ a {
   }
 }
 /* =========================================================
-   FINAL HOME PAGE FIX
-   - Keep the new hero navbar
-   - Hide only the old navbar
-   - Navbar scrolls away with the hero (not sticky/fixed)
-   - Keep all hero content visible
-========================================================= */
-
-/* Old/original navbar */
-.nav{
-  display:none !important;
-}
-
-/* New navbar */
-.hero-navbar{
-  display:block !important;
-  position:absolute !important;
-  top:0;
-  left:0;
-  right:0;
-  width:100%;
-  z-index:1000;
-}
-
-/* Full hero */
-.hero-home{
-  position:relative;
-  min-height:100vh;
-  height:auto !important;
-  overflow:visible !important;
-}
-
-/* Hero content */
-.hero-content{
-  position:relative;
-  z-index:3;
-  min-height:100vh;
-  height:auto !important;
-  padding-top:125px;
-  padding-bottom:45px;
-  box-sizing:border-box;
-}
-
-/* Keep text inside the hero */
-.hero-text{
-  padding-top:10px;
-}
-
-/* Desktop: fit the main hero comfortably in the first screen */
-@media (min-width:951px){
-  .hero-content{
-    min-height:100vh;
-    height:auto !important;
-  }
-
-  .hero-text{
-    padding-top:10px;
-  }
-
-  .hero-arabic{
-    font-size:26px;
-    margin-bottom:8px;
-  }
-
-  .hero-text h1{
-    font-size:72px;
-    line-height:.88;
-    letter-spacing:-2px;
-  }
-
-  .hero-description{
-    width:480px;
-    margin-top:20px;
-    font-size:16px;
-    line-height:1.5;
-  }
-
-  .hero-buttons{
-    margin-top:20px;
-    gap:14px;
-  }
-
-  .hero-btn{
-    height:54px;
-    min-width:205px;
-  }
-
-  .hero-features{
-    margin-top:20px;
-    gap:12px;
-  }
-
-  .hero-feature-card{
-    width:135px;
-    height:88px;
-  }
-
-  .feature-icon{
-    font-size:25px;
-    height:28px;
-    margin-bottom:3px;
-  }
-
-  .hero-feature-card strong,
-  .hero-feature-card span{
-    font-size:14px;
-  }
-
-  .hero-location{
-    margin-top:18px;
-    gap:12px;
-    font-size:10px;
-  }
-
-  .hero-location span{
-    width:55px;
-  }
-
-  .hero-quote{
-    right:25px;
-    bottom:45px;
-    width:270px;
-  }
-
-  .hero-quote p{
-    font-size:17px;
-    line-height:1.45;
-  }
-
-  .hero-quote small{
-    font-size:13px;
-    margin-top:6px;
-  }
-}
-
-/* Medium screens */
-@media (min-width:951px) and (max-width:1200px){
-  .hero-nav-links{
-    gap:20px;
-  }
-
-  .hero-logo{
-    font-size:23px;
-  }
-
-  .hero-logo img{
-    width:50px;
-    height:50px;
-  }
-
-  .hero-text{
-    width:500px;
-  }
-
-  .hero-text h1{
-    font-size:64px;
-  }
-
-  .hero-description{
-    width:450px;
-  }
-}
-
-/* Mobile/tablet */
-@media (max-width:950px){
-  .hero-home{
-    height:auto !important;
-    min-height:100vh;
-    overflow:visible !important;
-  }
-
-  .hero-content{
-    min-height:100vh;
-    height:auto !important;
-    padding:110px 0 50px;
-  }
-
-  .hero-quote{
-    position:relative;
-    right:auto;
-    bottom:auto;
-    width:100%;
-    margin:35px 0 0;
-  }
-}
-
-
-/* =========================================================
-   FINAL NAVBAR FIX
-   New navbar stays visible while the page is scrolled.
-   ========================================================= */
-
-body:has(.hero-home) > header:not(.hero-navbar) {
-  display: none !important;
-}
-
-body:has(.hero-home) .nav {
-  display: none !important;
-}
-
-.hero-home {
-  position: relative;
-  min-height: 100vh;
-  height: auto;
-  overflow: visible;
-}
-
-/* NEW NAVBAR - ALWAYS VISIBLE WHILE SCROLLING */
-.hero-home .hero-navbar {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 99999;
-}
-
-/* Keep Hero content below the fixed navbar */
-.hero-home .hero-content {
-  min-height: 100vh;
-  height: auto;
-  padding-top: 125px;
-  padding-bottom: 50px;
-  box-sizing: border-box;
-}
-
-/* Mobile */
-@media (max-width: 950px) {
-  .hero-home .hero-content {
-    min-height: 100vh;
-    padding-top: 110px;
-    padding-bottom: 50px;
-  }
-
-  .hero-home .hero-navbar {
-    position: fixed !important;
-  }
-}
-
-
-
-/* =========================================================
    🌙 ISLAMIC CALENDAR — PREMIUM DESIGN
    Jamia Madinatul Uloom
 ========================================================= */
@@ -3808,324 +3567,460 @@ body:has(.hero-home) .nav {
 
 }
 
-/* =========================================
-   NOTICE PAGE
-========================================= */
 
-.notice-page {
-    padding: 90px 0;
-    background: #f7f9f8;
-    min-height: 70vh;
+/* =========================================================
+   FINAL CLEAN UPGRADE
+   - Existing navbar design preserved
+   - Existing page content/order preserved
+   - Same section sizing language across pages
+   - Hero content starts safely below fixed navbar
+   - Responsive on desktop/tablet/mobile
+   ========================================================= */
+
+/* Global sizing */
+html{
+  scroll-padding-top:88px;
 }
 
-
-.notice-page-heading {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 50px;
+body{
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
-
-.notice-small-title {
-    display: inline-block;
-    font-size: 13px;
-    letter-spacing: 2px;
-    font-weight: 600;
-    color: #c99b2b;
-    margin-bottom: 10px;
+.wrap{
+  width:90%;
+  max-width:1160px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-
-.notice-page-heading h1 {
-    margin: 0 0 15px;
-    font-family: var(--serif);
-    color: #073b36;
-    font-size: 48px;
+/* Keep the original navbar look. Only make it persistent. */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:99999;
+  width:100%;
 }
 
-
-.notice-page-heading p {
-    color: #666;
-    line-height: 1.7;
-    font-size: 17px;
+.nav .wrap{
+  min-height:68px;
 }
 
-
-.notice-page-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+/* Existing hero navbar: same visual style, fixed while scrolling. */
+body:has(.hero-home) .nav{
+  display:none !important;
 }
 
-
-.notice-page-card {
-    background: #ffffff;
-    border: 1px solid #e4e8e6;
-    border-radius: 15px;
-    padding: 25px;
-    display: flex;
-    gap: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-    transition: transform 0.25s ease,
-                box-shadow 0.25s ease;
+.hero-home .hero-navbar{
+  position:fixed !important;
+  top:0;
+  left:0;
+  right:0;
+  width:100%;
+  z-index:99999;
 }
 
-
-.notice-page-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+/* Do NOT change the navbar height/design; reserve its space in hero. */
+.hero-home{
+  position:relative;
+  min-height:100vh;
+  height:auto !important;
+  overflow:visible !important;
 }
 
-
-.notice-card-icon {
-    width: 55px;
-    height: 55px;
-    min-width: 55px;
-    border-radius: 50%;
-
-    background: #eef6f4;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
+.hero-home .hero-content{
+  position:relative;
+  z-index:3;
+  width:min(1450px,94%);
+  min-height:100vh;
+  height:auto !important;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  box-sizing:border-box;
+  padding-top:118px;
+  padding-bottom:48px;
 }
 
-
-.notice-card-content h2 {
-    margin: 0 0 10px;
-    color: #073b36;
-    font-size: 22px;
+/* Keep hero text in its original position/width */
+.hero-text{
+  position:relative;
+  z-index:5;
+  width:570px;
+  padding-top:0;
 }
 
-
-.notice-card-content p {
-    margin: 10px 0 0;
-    color: #666;
-    line-height: 1.7;
+.hero-arabic{
+  margin-bottom:10px;
 }
 
-
-.notice-card-date {
-    color: #b38316;
-    font-size: 14px;
-    font-weight: 600;
+.hero-text h1{
+  margin-top:0;
 }
 
-
-.notice-message {
-    text-align: center;
-    padding: 35px;
-    color: #666;
+.hero-description{
+  margin-top:22px;
 }
 
-
-/* Mobile */
-
-@media (max-width: 750px) {
-
-    .notice-page {
-        padding: 60px 0;
-    }
-
-    .notice-page-heading h1 {
-        font-size: 34px;
-    }
-
-    .notice-page-heading p {
-        font-size: 15px;
-    }
-
-    .notice-page-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .notice-page-card {
-        padding: 20px;
-    }
-
-}
-/* =========================================
-   HERO POSITION FIX
-========================================= */
-
-.hero-home {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    min-height: 650px;
-    overflow: hidden;
+.hero-buttons{
+  margin-top:22px;
 }
 
-
-/* Background */
-
-.hero-bg {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-size: cover;
-    background-position: center center;
-
-    z-index: 0;
+.hero-features{
+  margin-top:22px;
 }
 
-
-/* Overlay */
-
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: 1;
+.hero-location{
+  margin-top:20px;
 }
 
-
-/* Navbar */
-
-.hero-navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    z-index: 20;
+/* Consistent page content width and vertical rhythm */
+.sec,
+.extra-section{
+  width:100%;
 }
 
-
-/* HERO CONTENT */
-
-.hero-content {
-    position: relative;
-
-    z-index: 5;
-
-    width: 100%;
-    height: 100%;
-
-    box-sizing: border-box;
-
-    display: flex;
-    align-items: flex-start;
-
-    /* IMPORTANT */
-    padding-top: 175px;
-
-    padding-left: 45px;
-    padding-right: 40px;
+.sec{
+  padding-top:80px;
+  padding-bottom:80px;
 }
 
-
-/* Hero text */
-
-.hero-text {
-    max-width: 700px;
+.page-hero{
+  padding-top:70px;
+  padding-bottom:70px;
 }
 
-
-/* Arabic */
-
-.hero-arabic {
-    margin-bottom: 8px;
-
-    color: #f2bd32;
-
-    font-size: 30px;
-
-    line-height: 1.25;
-
-    text-shadow:
-        0 2px 5px rgba(0,0,0,0.7);
+/* Cards use the same visual language without changing their sizes/content. */
+.person-card,
+.facility-card,
+.calendar-placeholder,
+.qr-card,
+.form,
+.prog{
+  box-shadow:0 12px 35px rgba(8,48,47,.08);
 }
 
-
-/* Heading */
-
-.hero-text h1 {
-    margin: 0;
-
-    color: #fff;
-
-    font-size: clamp(60px, 6vw, 96px);
-
-    line-height: 0.88;
+.person-card,
+.facility-card,
+.calendar-placeholder,
+.qr-card,
+.form{
+  border-radius:12px;
 }
 
-
-/* Description */
-
-.hero-description {
-    max-width: 650px;
-
-    margin-top: 25px;
-
-    color: #fff;
-
-    font-size: 18px;
-
-    line-height: 1.5;
+.person-card:hover,
+.facility-card:hover{
+  box-shadow:0 18px 42px rgba(8,48,47,.12);
 }
 
+/* =========================================================
+   DESKTOP HERO
+   ========================================================= */
+@media (min-width:951px){
+  .hero-home .hero-content{
+    min-height:100vh;
+    padding-top:118px;
+    padding-bottom:45px;
+  }
 
-/* Buttons */
+  .hero-text{
+    width:570px;
+  }
 
-.hero-buttons {
-    margin-top: 22px;
+  .hero-text h1{
+    font-size:clamp(64px,6vw,86px);
+    line-height:.90;
+    letter-spacing:-2px;
+  }
+
+  .hero-description{
+    width:500px;
+    max-width:500px;
+    font-size:16px;
+    line-height:1.55;
+  }
+
+  .hero-btn{
+    height:56px;
+    min-width:205px;
+  }
+
+  .hero-feature-card{
+    width:140px;
+    height:92px;
+  }
+
+  .hero-quote{
+    right:20px;
+    bottom:42px;
+    width:270px;
+  }
 }
 
+/* =========================================================
+   TABLET
+   ========================================================= */
+@media (max-width:950px){
+  .hero-home .hero-content{
+    width:90%;
+    min-height:100vh;
+    height:auto !important;
+    padding-top:108px;
+    padding-bottom:45px;
+    align-items:flex-start;
+  }
 
-/* Feature cards */
+  .hero-text{
+    width:100%;
+    padding-top:20px;
+  }
 
-.hero-features {
-    margin-top: 22px;
+  .hero-text h1{
+    font-size:clamp(54px,9vw,70px);
+  }
+
+  .hero-description{
+    width:min(90%,620px);
+  }
+
+  .hero-nav-links{
+    display:none;
+  }
+
+  .hero-home .hero-navbar{
+    min-height:74px;
+  }
+
+  .hero-nav-inner{
+    height:74px;
+  }
+
+  .hero-quote{
+    position:relative;
+    right:auto;
+    bottom:auto;
+    width:100%;
+    margin-top:35px;
+  }
+
+  .about-grid,
+  .adm-grid,
+  .visit-grid,
+  .donate-grid{
+    grid-template-columns:1fr;
+  }
+
+  .values{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .people-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .facility-grid,
+  .gallery-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-
-/* Remove horizontal scrollbar */
-
-html,
-body {
-    overflow-x: hidden;
-}
-
-
-/* =========================================
+/* =========================================================
    MOBILE
-========================================= */
+   ========================================================= */
+@media (max-width:600px){
+  html{
+    scroll-padding-top:70px;
+  }
 
-@media (max-width: 800px) {
+  body{
+    font-size:15px;
+  }
 
-    .hero-home {
-        min-height: 650px;
-    }
+  .wrap{
+    width:90%;
+  }
 
-    .hero-content {
+  .sec{
+    padding-top:60px;
+    padding-bottom:60px;
+  }
 
-        padding-top: 135px;
+  .sec h2{
+    font-size:34px;
+  }
 
-        padding-left: 25px;
-        padding-right: 25px;
-    }
+  /* Hero */
+  .hero-home .hero-navbar{
+    min-height:68px;
+  }
 
-    .hero-arabic {
-        font-size: 24px;
-    }
+  .hero-nav-inner{
+    width:92%;
+    height:68px;
+  }
 
-    .hero-text h1 {
-        font-size: clamp(50px, 13vw, 72px);
-    }
+  .hero-logo{
+    gap:10px;
+    font-size:18px;
+  }
 
-    .hero-description {
-        font-size: 15px;
-        margin-top: 18px;
-    }
+  .hero-logo img{
+    width:44px;
+    height:44px;
+  }
 
+  .hero-logo span{
+    font-size:18px;
+  }
+
+  .hero-home .hero-content{
+    width:90%;
+    min-height:100vh;
+    padding-top:92px;
+    padding-bottom:35px;
+  }
+
+  .hero-text{
+    width:100%;
+    padding-top:15px;
+  }
+
+  .hero-arabic{
+    font-size:24px;
+    margin-bottom:9px;
+  }
+
+  .hero-text h1{
+    font-size:clamp(43px,12.5vw,54px);
+    line-height:.93;
+    letter-spacing:-1px;
+  }
+
+  .hero-description{
+    width:100%;
+    margin-top:20px;
+    font-size:15px;
+    line-height:1.6;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+    width:100%;
+    gap:10px;
+  }
+
+  .hero-btn{
+    width:100%;
+    min-width:0;
+    height:54px;
+  }
+
+  .hero-features{
+    width:100%;
+    gap:7px;
+  }
+
+  .hero-feature-card{
+    width:auto;
+    flex:1;
+    height:92px;
+  }
+
+  .hero-feature-card strong,
+  .hero-feature-card span{
+    font-size:12px;
+  }
+
+  .feature-icon{
+    font-size:23px;
+  }
+
+  .hero-location{
+    flex-wrap:wrap;
+    font-size:8px;
+    letter-spacing:1.5px;
+    gap:7px;
+    margin-top:22px;
+  }
+
+  .hero-location span{
+    width:35px;
+  }
+
+  .hero-quote{
+    width:100%;
+    margin-top:28px;
+  }
+
+  .hero-quote p{
+    font-size:16px;
+  }
+
+  /* All non-hero pages */
+  .values,
+  .people-grid,
+  .facility-grid,
+  .gallery-grid{
+    grid-template-columns:1fr;
+  }
+
+  .prog{
+    grid-template-columns:1fr;
+  }
+
+  .tabs{
+    flex-direction:row;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+
+  .tabs::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tab{
+    min-width:190px;
+  }
+
+  .panel{
+    padding:30px 22px;
+  }
+
+  .row{
+    grid-template-columns:1fr;
+  }
+
+  .map{
+    height:300px;
+  }
+
+  .calendar-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .foot .wrap{
+    flex-direction:column;
+  }
 }
+
+@media (max-width:420px){
+  .hero-logo span{
+    font-size:16px;
+  }
+
+  .hero-text h1{
+    font-size:43px;
+  }
+
+  .hero-arabic{
+    font-size:21px;
+  }
+
+  .hero-feature-card strong,
+  .hero-feature-card span{
+    font-size:11px;
+  }
+}
+
+
