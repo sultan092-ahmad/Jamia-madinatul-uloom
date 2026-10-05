@@ -1,6 +1,5 @@
 
 /* =====================================================
- /* =====================================================
    1. MOBILE MENU
 ===================================================== */
 
@@ -14,13 +13,12 @@ if (menuBtn && links) {
     const isOpen = links.classList.toggle("open");
 
     menuBtn.setAttribute(
-    "aria-expanded",
-    isOpen ? "true" : "false"
+      "aria-expanded",
+      isOpen ? "true" : "false"
     );
 
   });
 }
-
 
   // Mobile menu link click hone ke baad menu close
   links.querySelectorAll("a").forEach(function (link) {
