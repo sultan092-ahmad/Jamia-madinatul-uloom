@@ -1,46 +1,183 @@
 
 /* =====================================================
-   1. MOBILE MENU
+   1. GLOBAL NAVIGATION
+   Same More menu on every page
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  const menuBtn = document.getElementById("menuBtn");
+  /* Remove the duplicate hero navbar from index.html */
+  const mainNav = document.querySelector("header.nav");
+  const heroNav = document.querySelector("header.hero-navbar");
+
+  if (mainNav && heroNav) {
+    heroNav.remove();
+  }
+
+
+  /* Make the main navbar identical on every page */
   const links = document.getElementById("links");
 
-  if (!menuBtn || !links) return;
+  if (links) {
 
-  menuBtn.addEventListener("click", function (event) {
+    links.innerHTML = `
+      <li>
+        <a href="index.html">Home</a>
+      </li>
 
-    event.preventDefault();
-    event.stopPropagation();
+      <li>
+        <a href="index.html#about">About</a>
+      </li>
 
-    links.classList.toggle("open");
+      <li>
+        <a href="index.html#programs">Programs</a>
+      </li>
 
-    const isOpen = links.classList.contains("open");
+      <li>
+        <a href="index.html#daily">Daily Life</a>
+      </li>
 
-    menuBtn.setAttribute(
-      "aria-expanded",
-      isOpen ? "true" : "false"
-    );
+      <li>
+        <a href="index.html#admissions">Admissions</a>
+      </li>
 
-  });
+      <li>
+        <a href="index.html#visit">Visit</a>
+      </li>
 
-  /* Menu link click hone ke baad close */
-  links.querySelectorAll("a").forEach(function (link) {
+      <li class="nav-dropdown">
 
-    link.addEventListener("click", function () {
+        <button
+          class="dropdown-btn"
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          More <span class="arrow">▾</span>
+        </button>
 
-      links.classList.remove("open");
+        <div class="dropdown-menu">
 
-      menuBtn.setAttribute(
-        "aria-expanded",
-        "false"
-      );
+          <a href="leadership.html">
+            Sarbarah &amp; Maulanas
+          </a>
+
+          <a href="notices.html">
+            📢 Notices
+          </a>
+
+          <a href="calendar.html">
+            Islamic Calendar
+          </a>
+
+          <a href="facilities.html">
+            Facilities
+          </a>
+
+          <a href="facilities.html#gallery">
+            Gallery
+          </a>
+
+          <a href="login.html">
+            🔐 Admin Login
+          </a>
+
+        </div>
+
+      </li>
+    `;
+
+
+    /* Mobile menu */
+    const menuBtn = document.getElementById("menuBtn");
+
+    if (menuBtn) {
+
+      menuBtn.onclick = function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen =
+          links.classList.toggle("open");
+
+        menuBtn.setAttribute(
+          "aria-expanded",
+          isOpen ? "true" : "false"
+        );
+
+      };
+
+    }
+
+
+    /* More dropdown */
+    const dropdown =
+      links.querySelector(".nav-dropdown");
+
+    const dropdownBtn =
+      links.querySelector(".dropdown-btn");
+
+
+    if (dropdown && dropdownBtn) {
+
+      dropdownBtn.onclick = function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen =
+          dropdown.classList.toggle("open");
+
+        dropdownBtn.setAttribute(
+          "aria-expanded",
+          isOpen ? "true" : "false"
+        );
+
+      };
+
+
+      document.addEventListener("click", function (event) {
+
+        if (!dropdown.contains(event.target)) {
+
+          dropdown.classList.remove("open");
+
+          dropdownBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      });
+
+    }
+
+
+    /* Close mobile menu after navigation */
+    links.querySelectorAll("a").forEach(function (link) {
+
+      link.addEventListener("click", function () {
+
+        links.classList.remove("open");
+
+        if (menuBtn) {
+          menuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        }
+
+        if (dropdown) {
+          dropdown.classList.remove("open");
+        }
+
+      });
 
     });
 
-  });
+  }
 
 });
 
@@ -884,119 +1021,6 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================================
    LEADERSHIP PAGE JAVASCRIPT
 ========================================================= */
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-const leadershipMenuBtn =
-  document.getElementById("menuBtn");
-
-const leadershipLinks =
-  document.getElementById("links");
-
-
-if (
-  leadershipMenuBtn &&
-  leadershipLinks
-) {
-
-  leadershipMenuBtn.addEventListener(
-    "click",
-    function () {
-
-      const isOpen =
-        leadershipLinks.classList.toggle("open");
-
-      leadershipMenuBtn.setAttribute(
-        "aria-expanded",
-        isOpen
-      );
-
-    }
-  );
-
-
-  /* Close menu after clicking a link */
-
-  leadershipLinks
-    .querySelectorAll("a")
-    .forEach(function (link) {
-
-      link.addEventListener(
-        "click",
-        function () {
-
-          leadershipLinks.classList.remove(
-            "open"
-          );
-
-          leadershipMenuBtn.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   MORE DROPDOWN
-========================================================= */
-
-const leadershipDropdownBtn =
-  document.querySelector(".dropdown-btn");
-
-const leadershipDropdown =
-  document.querySelector(".nav-dropdown");
-
-
-if (
-  leadershipDropdownBtn &&
-  leadershipDropdown
-) {
-
-  leadershipDropdownBtn.addEventListener(
-    "click",
-    function (event) {
-
-      event.stopPropagation();
-
-      leadershipDropdown.classList.toggle(
-        "active"
-      );
-
-    }
-  );
-
-
-  /* Close dropdown when clicking outside */
-
-  document.addEventListener(
-    "click",
-    function (event) {
-
-      if (
-        !leadershipDropdown.contains(
-          event.target
-        )
-      ) {
-
-        leadershipDropdown.classList.remove(
-          "active"
-        );
-
-      }
-
-    }
-  );
-
-}
 
 
 /* =========================================================
