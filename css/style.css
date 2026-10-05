@@ -4024,3 +4024,160 @@ body:has(.hero-home) .nav{
 }
 
 
+/* =========================================
+   MOBILE NAVBAR - FINAL FIX
+   ========================================= */
+
+@media (max-width: 850px) {
+
+    /* Original navbar visible */
+    .nav {
+        display: block !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 999999 !important;
+        width: 100% !important;
+    }
+
+    .nav .wrap {
+        min-height: 64px !important;
+        height: 64px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    /* Logo + Jamia name */
+    .brand {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    .brand span {
+        font-size: 17px !important;
+    }
+
+    .site-logo,
+    .brand img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    /* THREE LINE MENU */
+    .menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+
+        width: 44px !important;
+        height: 44px !important;
+
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,0.35) !important;
+        border-radius: 8px !important;
+
+        color: white !important;
+        font-size: 0 !important;
+
+        cursor: pointer;
+        z-index: 1000000;
+    }
+
+    /* Hamburger */
+    .menu-btn::before {
+        content: "☰";
+        font-size: 28px !important;
+        line-height: 1;
+        color: white;
+    }
+
+    /* Mobile menu */
+    .links {
+        display: none !important;
+
+        position: absolute !important;
+        top: 64px !important;
+        left: 10px !important;
+        right: 10px !important;
+
+        flex-direction: column !important;
+        align-items: stretch !important;
+
+        background: var(--green) !important;
+
+        padding: 10px !important;
+
+        border-radius: 12px !important;
+        border: 1px solid rgba(255,255,255,0.2);
+
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+
+        z-index: 999999 !important;
+    }
+
+    /* Click ke baad menu open */
+    .links.open {
+        display: flex !important;
+    }
+
+    .links > li {
+        width: 100% !important;
+    }
+
+    .links > li > a,
+    .dropdown-btn {
+        display: block !important;
+        width: 100% !important;
+
+        padding: 13px 14px !important;
+
+        color: white !important;
+        font-size: 15px !important;
+
+        text-align: left !important;
+        border-radius: 7px !important;
+    }
+
+    .links > li > a:hover,
+    .dropdown-btn:hover {
+        background: rgba(255,255,255,0.1) !important;
+    }
+
+    /* Mobile dropdown */
+    .nav-dropdown {
+        position: static !important;
+        width: 100% !important;
+    }
+
+    /* Homepage ka duplicate hero navbar hide */
+    .hero-navbar {
+        display: none !important;
+    }
+
+    /* Hero content navbar ke neeche */
+    body:has(.hero-home) .hero-content {
+        padding-top: 100px !important;
+    }
+}
+
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+@media (min-width: 851px) {
+
+    .nav {
+        display: block !important;
+    }
+
+    .menu-btn {
+        display: none !important;
+    }
+
+    .hero-navbar {
+        display: none !important;
+    }
+}
+
