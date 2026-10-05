@@ -4025,3 +4025,6 @@ body{
 body:has(.hero-home) .hero-navbar {
   display: none !important;
 }
+.links.open {
+    display: flex !important;
+}
