@@ -3,14 +3,21 @@
    1. MOBILE MENU
 ===================================================== */
 
-const menuBtn = document.getElementById("menuBtn");
-const links = document.getElementById("links");
+document.addEventListener("DOMContentLoaded", function () {
 
-if (menuBtn && links) {
+  const menuBtn = document.getElementById("menuBtn");
+  const links = document.getElementById("links");
 
-  menuBtn.addEventListener("click", function () {
+  if (!menuBtn || !links) return;
 
-    const isOpen = links.classList.toggle("open");
+  menuBtn.addEventListener("click", function (event) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    links.classList.toggle("open");
+
+    const isOpen = links.classList.contains("open");
 
     menuBtn.setAttribute(
       "aria-expanded",
@@ -18,9 +25,8 @@ if (menuBtn && links) {
     );
 
   });
-}
 
-  // Mobile menu link click hone ke baad menu close
+  /* Menu link click hone ke baad close */
   links.querySelectorAll("a").forEach(function (link) {
 
     link.addEventListener("click", function () {
@@ -36,7 +42,7 @@ if (menuBtn && links) {
 
   });
 
-
+});
 
 
 /* =====================================================
