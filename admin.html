@@ -1588,7 +1588,7 @@
 
                     const response =
                         await fetch(
-                            "http://localhost:5000/api/teachers",
+                            "https://jamia-madinatul-uloom.onrender.com/api/teachers",
                             {
 
                                 method: "POST",
@@ -1721,7 +1721,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/teachers",
+                        "https://jamia-madinatul-uloom.onrender.com/api/teachers",
                         {
 
                             method: "GET",
@@ -1928,7 +1928,7 @@
 
                 const response =
                     await fetch(
-                        `http://localhost:5000/api/teachers/${id}`,
+                        `https://jamia-madinatul-uloom.onrender.com/api/teachers/${id}`,
                         {
 
                             method: "DELETE",
@@ -2043,7 +2043,7 @@ noticeForm.addEventListener(
 
             const response =
                 await fetch(
-                    "http://localhost:5000/api/notices",
+                    "https://jamia-madinatul-uloom.onrender.com/api/notices",
                     {
 
                         method: "POST",
@@ -2169,7 +2169,7 @@ async function loadNotices() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/notices",
+                "https://jamia-madinatul-uloom.onrender.com/api/notices",
                 {
 
                     method: "GET",
@@ -2339,7 +2339,7 @@ async function deleteNotice(id) {
 
         const response =
             await fetch(
-                `http://localhost:5000/api/notices/${id}`,
+                `https://jamia-madinatul-uloom.onrender.com/api/notices/${id}`,
                 {
 
                     method: "DELETE",
@@ -2458,7 +2458,7 @@ programForm.addEventListener(
 
             const response =
                 await fetch(
-                    "http://localhost:5000/api/programs",
+                    "https://jamia-madinatul-uloom.onrender.com/api/programs",
                     {
 
                         method: "POST",
@@ -2587,7 +2587,7 @@ async function loadPrograms() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/programs",
+                "https://jamia-madinatul-uloom.onrender.com/api/programs",
                 {
 
                     method: "GET",
@@ -2774,7 +2774,7 @@ async function deleteProgram(id) {
 
         const response =
             await fetch(
-                `http://localhost:5000/api/programs/${id}`,
+                `https://jamia-madinatul-uloom.onrender.com/api/programs/${id}`,
                 {
 
                     method: "DELETE",
@@ -2863,7 +2863,7 @@ if (galleryForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/gallery",
+                "https://jamia-madinatul-uloom.onrender.com/api/gallery",
                 {
                     method: "POST",
 
@@ -2938,7 +2938,7 @@ async function loadGallery() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/gallery"
+            "https://jamia-madinatul-uloom.onrender.com/api/gallery"
         );
 
         const data = await response.json();
@@ -3021,7 +3021,7 @@ async function deleteGallery(id) {
     try {
 
         const response = await fetch(
-            `http://localhost:5000/api/gallery/${id}`,
+            `https://jamia-madinatul-uloom.onrender.com/api/gallery/${id}`,
             {
                 method: "DELETE",
 
@@ -3081,7 +3081,7 @@ async function loadAdmissions() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/admissions",
+            "https://jamia-madinatul-uloom.onrender.com/api/admissions",
             {
                 method: "GET",
 
@@ -3462,7 +3462,7 @@ async function updateAdmissionStatus(id) {
     try {
 
         const response = await fetch(
-            `http://localhost:5000/api/admissions/${id}`,
+            `https://jamia-madinatul-uloom.onrender.com/api/admissions/${id}`,
             {
                 method: "PUT",
 
@@ -3545,7 +3545,7 @@ async function deleteAdmission(id) {
     try {
 
         const response = await fetch(
-            `http://localhost:5000/api/admissions/${id}`,
+            `https://jamia-madinatul-uloom.onrender.com/api/admissions/${id}`,
             {
                 method: "DELETE",
 
@@ -3611,7 +3611,7 @@ async function loadDashboardStats() {
         // Teachers
         const teachersResponse =
             await fetch(
-                "http://localhost:5000/api/teachers"
+                "https://jamia-madinatul-uloom.onrender.com/api/teachers"
             );
 
         const teachersData =
@@ -3621,7 +3621,7 @@ async function loadDashboardStats() {
         // Programs
         const programsResponse =
             await fetch(
-                "http://localhost:5000/api/programs"
+                "https://jamia-madinatul-uloom.onrender.com/api/programs"
             );
 
         const programsData =
@@ -3631,7 +3631,7 @@ async function loadDashboardStats() {
         // Gallery
         const galleryResponse =
             await fetch(
-                "http://localhost:5000/api/gallery"
+                "https://jamia-madinatul-uloom.onrender.com/api/gallery"
             );
 
         const galleryData =
@@ -3641,7 +3641,7 @@ async function loadDashboardStats() {
         // Admissions
         const admissionsResponse =
             await fetch(
-                "http://localhost:5000/api/admissions",
+                "https://jamia-madinatul-uloom.onrender.com/api/admissions",
                 {
                     headers: {
                         "Authorization":
