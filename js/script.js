@@ -6,13 +6,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* Remove the duplicate hero navbar from index.html */
-  const mainNav = document.querySelector("header.nav");
-  const heroNav = document.querySelector("header.hero-navbar");
-
-  if (mainNav && heroNav) {
-    heroNav.remove();
-  }
+  /* Keep the main navbar visible.
+     The hero navbar is hidden by CSS to avoid duplicate navigation. */
 
 
   /* Make the main navbar identical on every page */
